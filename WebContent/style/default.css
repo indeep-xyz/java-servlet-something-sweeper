@@ -1,0 +1,83 @@
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+table.configuration {
+	margin: auto;
+}
+
+#field {
+	display: table;
+	margin: auto;
+}
+
+#field .row {
+	display: table-row;
+}
+
+#field .col {
+	display: table-cell;
+	width: 60px;
+	height: 60px;
+	vertical-align: middle;
+	border: 1px solid #000000;
+	overflow: hidden;
+}
+
+#field .col>.opened {
+	width: 100%;
+	height: 100%;
+	line-height: 40px;
+	font-size: 20px;
+	overflow: hidden;
+}
+
+#field .col>.opened.plain {
+	line-height: 60px;
+	font-size: 20px;
+	background-color: #f0f0f0; 
+}
+
+#field .col>.opened.something {
+	background-color: #f00000; 
+}
+
+
+#field input[type="submit"] {
+	width: 100%;
+	height: 100%;
+	background-color: #ffffff;
+	color: #ffffff;
+	border: none;
+}
+
+#field input[type="submit"]:hover {
+	background-color: #f8f8f8; 
+}
+
+#result {
+	position: relative;
+}
+
+/* #result #message { */
+/* 	z-index: -1; */
+	
+/* 	position: absolute; */
+/* 	top: 0; */
+/* } */
+
+/* #result #field { */
+/* 	z-index: 0; */
+/* 	position: absolute; */
+/* 	top: 0; */
+/*     left: 50%; */
+/*     right: 0; */
+/*     margin: auto; */
+	
+/* } */
