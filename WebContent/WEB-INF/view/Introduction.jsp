@@ -19,39 +19,43 @@
 	
 	<table class="configuration">
 		<tr>
-			<td>
-				width
-			</td>
+			<th>
+				width:
+			</th>
 			<td>
 				<input type="text" name="width" value="5">
 			</td>
 		</tr>
 		<tr>
-			<td>
-				height
-			</td>
+			<th>
+				height:
+			</th>
 			<td>
 				<input type="text" name="height" value="5">
 			</td>
 		</tr>
+        <tr>
+            <th>
+                difficulty:
+            </th>
+            <td>
+			    <ul id="difficulty-list">
+			        <% for(int i = 1; i < 6; i++) {
+			            String id = "difficulty-" + i;
+			            String checked = (i == 2) ? " checked" : "";
+			            %>
+			                <li>
+			                    <label for="<%= id %>"><%= i %></label><br>
+			                    <input type="radio" name="difficulty" value="<%= i %>" id="<%= id %>"<%= checked %>>
+			                </li>
+			        <% } %>
+			    </ul>
+			    <br clear="all">
+            </td>
+        </tr>
 	</table>
 	
-	<table class="configuration">
-		<tr>
-			<% for(int i = 1; i < 6; i++) {
-				String id = "difficulty-" + i;
-				String checked = (i == 2) ? " checked" : "";
-				%>
-			<td>
-				<label for="<%= id %>"><%= i %></label>
-			</td>
-			<td>
-				<input type="radio" name="difficulty" value="<%= i %>" id="<%= id %>"<%= checked %>>
-			</td>
-			<% } %>
-	</table>
-
-<input type="submit" value="Start">
+    <input type="submit" value="Start">
 </form>
 
 </body>

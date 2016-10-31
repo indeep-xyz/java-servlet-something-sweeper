@@ -8,10 +8,6 @@ body {
 	text-align: center;
 }
 
-table.configuration {
-	margin: auto;
-}
-
 /**
  * header
  */
@@ -40,6 +36,47 @@ header h1 {
 	font-family: cursive;
 	margin: 0;
 }
+
+/**
+ * table.configuration
+ * The table for configuration.
+ */
+
+.configuration {
+    margin: 0 auto;
+}
+
+.configuration th{
+    background-color: #000000;
+    color: #ffffff;
+	font-weight: normal;
+    text-align: right;
+    padding: 0.25em 0.5em 0.25em 1em;
+}
+
+/**
+ * #difficulty-list
+ * The list for difficulty.
+ */
+
+#difficulty-list {
+    margin: 0;
+    padding: 0;
+}
+
+#difficulty-list li {
+    padding: 1px;
+    float: left;
+    list-style-type: none;
+    text-align: center;
+}
+
+#difficulty-list li:hover {
+	border: 1px solid #000000;
+    padding: 0;
+}
+
+
 
 /**
  * #field
