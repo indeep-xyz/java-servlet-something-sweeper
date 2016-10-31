@@ -1,4 +1,4 @@
-package controller;
+package controller.game;
 
 import java.io.IOException;
 
@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import controller.tool.ParameterAgent;
 import model.Field;
 
 /**
@@ -16,6 +17,12 @@ import model.Field;
  *
  */
 public class GameMaster {
+	
+	/**
+	 * フィールド状況を記録するためのセッション名。
+	 */
+	public static String SESSION_FIELD_DATA = "field";
+	
 	/**
 	 * リクエスト用のオブジェクト
 	 */
@@ -50,56 +57,16 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean tryFormatting() {
-		FieldCreator manager = new FieldCreator(this.request);
-		boolean formattable = manager.checkFormattable();
+		FieldCreator creator = new FieldCreator(this.request);
+		boolean formattable = creator.checkFormattable();
 
 		if (formattable) {
-			this.field = manager.create();
+			this.field = creator.create();
 		}
 		
 		return formattable;
 	}
 
-	/**
-	 * 初期画面の表示
-	 * @param request リクエスト
-	 * @param response レスポンス
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void runIntroduction() throws ServletException, IOException {
-		forward("/WEB-INF/view/Introduction.jsp");
-	}
-
-	/**
-	 * ゲーム画面の表示
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void runGame() throws ServletException, IOException {
-		saveGameData();
-		forward("/WEB-INF/view/Game.jsp");
-	}
-
-	/**
-	 * ゲーム失敗画面の表示
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void runGameFailed() throws ServletException, IOException {
-		saveGameData();
-		forward("/WEB-INF/view/GameFailed.jsp");
-	}
-
-	/**
-	 * ゲーム成功画面の表示
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void runGameSucceeded() throws ServletException, IOException {
-		forward("/WEB-INF/view/GameSucceeded.jsp");
-	}
-	
 	/**
 	 * ゲーム状態の保存
 	 * @throws ServletException
@@ -107,7 +74,7 @@ public class GameMaster {
 	 */
 	public void saveGameData() throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		session.setAttribute("table", this.field);
+		session.setAttribute(SESSION_FIELD_DATA, this.field);
 	}
 
 	/**
@@ -117,18 +84,7 @@ public class GameMaster {
 	 */
 	public void loadGameData() throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		this.field = (Field) session.getAttribute("table");
-	}
-
-	/**
-	 * ビューへのフォワードをおこなう
-	 * @param path ビューのパス
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	private void forward(String path) throws ServletException, IOException {
-		RequestDispatcher dispatcher = this.request.getRequestDispatcher(path);
-		dispatcher.forward(this.request, this.response);
+		this.field = (Field) session.getAttribute(SESSION_FIELD_DATA);
 	}
 
 	/**
@@ -138,8 +94,11 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean openCell() throws ServletException, IOException {
-		FieldUpdater manager = new FieldUpdater(this.request, this.field);
-		boolean isSomething = manager.openCell();
+		ParameterAgent paramGetter = new ParameterAgent(request);
+		int id = paramGetter.getInt("clicked", -1);
+		
+		CellOpener opener = new CellOpener(this.field);
+		boolean isSomething = opener.openCell(id);
 		
 		saveGameData();
 		

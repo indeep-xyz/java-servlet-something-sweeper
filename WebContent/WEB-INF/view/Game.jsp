@@ -1,3 +1,4 @@
+<%@page import="controller.game.GameMaster"%>
 <%@page import="model.Cell"%>
 <%@page import="model.Field"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,9 +13,9 @@
 <body>
 
 <%
-Field table = (Field) session.getAttribute("table");
-int width = table.getWidth();
-int height = table.getHeight();
+Field field = (Field) session.getAttribute(GameMaster.SESSION_FIELD_DATA);
+int width = field.getWidth();
+int height = field.getHeight();
 %>
 
 <h1>マインスイーパ</h1>
@@ -25,7 +26,7 @@ int height = table.getHeight();
 	<div class="row">
 		<% for(int x = 0; x < width; x++) {
 			int index = y * width + x;
-			Cell cell = table.getCell(index);
+			Cell cell = field.getCell(index);
 			%>
 		<div class="col">
 			<% if (cell.isOpen()) { 

@@ -1,4 +1,4 @@
-package controller;
+package controller.tool;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author indeep-xyz
  *
  */
-public class ParamGetter {
+public class ParameterAgent {
 	
 	/**
 	 * リクエスト用のオブジェクト
@@ -18,7 +18,7 @@ public class ParamGetter {
 	 * コンストラクタ
 	 * @param request リクエスト用のオブジェクト
 	 */
-	public ParamGetter(HttpServletRequest request) {
+	public ParameterAgent(HttpServletRequest request) {
 		this.request = request;
 	}
 	
@@ -28,18 +28,18 @@ public class ParamGetter {
 	 * @param defaultValue 戻り値のデフォルト値
 	 * @return 取得した値、もしくはデフォルト値
 	 */
-	public int getInt(String name, int defaultValue) {
-		int n = defaultValue;
-		String nSrc = this.request.getParameter(name);
+	public Integer getInt(String name, Integer defaultValue) {
+		Integer number = defaultValue;
+		String source = request.getParameter(name);
 
-		if (nSrc != null) {
+		if (source != null) {
 			try {
-				n = Integer.parseInt(nSrc);
+				number = Integer.parseInt(source);
 			} catch (NumberFormatException e) {
 				;
 			}
 		}
 		
-		return n;
+		return number;
 	}
 }

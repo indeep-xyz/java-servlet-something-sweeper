@@ -1,7 +1,8 @@
-package controller;
+package controller.game;
 
 import javax.servlet.http.HttpServletRequest;
 
+import controller.tool.ParameterAgent;
 import model.CellSurveillant;
 import model.Field;
 
@@ -10,8 +11,7 @@ import model.Field;
  * @author indeep-xyz
  *
  */
-public class FieldCreator
-		extends TableManager{
+public class FieldCreator {
 
 	/**
 	 * 横幅
@@ -38,8 +38,7 @@ public class FieldCreator
 	 * @param request リクエスト用のオブジェクト
 	 */
 	public FieldCreator(HttpServletRequest request) {
-		super(request);
-		prepareParameters();
+		prepareParameters(request);
 	}
 	
 	/**
@@ -52,19 +51,22 @@ public class FieldCreator
 
 	/**
 	 * 表データがフォーマット可能な引数を保持しているかを検証する
+	 * @param request 
 	 * @return 保持していれば true
 	 * @throws SecurityException 
 	 * @throws NoSuchFieldException 
 	 * @throws IllegalAccessException 
 	 * @throws IllegalArgumentException 
 	 */
-	private void prepareParameters() {
-		boolean isFormattableParameters = true;
+	private void prepareParameters(HttpServletRequest request) {
+		ParameterAgent pAgent = new ParameterAgent(request);
 		String[] names = {"width", "height", "difficulty"};
+		boolean isFormattableParameters = true;
+		
 		
 		for (int i = 0; i < names.length; i++) {
 			String name = names[i];
-			int n = getIntParameter(name, -1);
+			int n = pAgent.getInt(name, -1);
 			
 			if (n < 1) {
 				isFormattableParameters = false;

@@ -1,3 +1,4 @@
+<%@page import="controller.game.GameMaster"%>
 <%@page import="model.Cell"%>
 <%@page import="model.Field"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,10 +13,10 @@
 <body>
 
 <%
-Field table = (Field) session.getAttribute("table");
-int width = table.getWidth();
-int height = table.getHeight();
-int difficulty = table.getDifficulty();
+Field field = (Field) session.getAttribute(GameMaster.SESSION_FIELD_DATA);
+int width = field.getWidth();
+int height = field.getHeight();
+int difficulty = field.getDifficulty();
 %>
 
 <h1>失敗</h1>
@@ -40,7 +41,7 @@ int difficulty = table.getDifficulty();
 	<div class="row">
 		<% for(int x = 0; x < width; x++) {
 			int index = y * width + x;
-			Cell cell = table.getCell(index);
+			Cell cell = field.getCell(index);
 			%>
 		<div class="col">
 			<%
