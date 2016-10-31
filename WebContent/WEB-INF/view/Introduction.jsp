@@ -9,7 +9,9 @@
 </head>
 <body>
 
-<h1>Something Sweeper</h1>
+<header>
+    <h1>Something Sweeper</h1>
+</header>
 
 <h2>サイズと難易度を入力してください</h2>
 

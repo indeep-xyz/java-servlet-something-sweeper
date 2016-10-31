@@ -1,6 +1,10 @@
 <%@page import="java.util.Random"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+Random rand = new Random();
+String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "magenta", "olieve"};
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +14,11 @@
 </head>
 <body>
 
-<%
-Random rand = new Random();
-String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "magenta", "olieve"};
-%>
+<header class="succeeded">
+    <h1>Something Sweeper</h1>
+</header>
 
-<h1>Succeeded</h1>
+<h2>SUCCEEDED</h2>
 
 <jsp:include page="part/retry-form.jsp"></jsp:include>
 

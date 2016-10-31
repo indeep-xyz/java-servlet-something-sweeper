@@ -9,7 +9,9 @@
 </head>
 <body>
 
-<h1>Something Sweeper</h1>
+<header>
+    <h1>Something Sweeper</h1>
+</header>
 
 <jsp:include page="part/field-in-game.jsp"></jsp:include>
 
