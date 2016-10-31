@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>マインスイーパ (導入)</title>
+<title>Something Sweeper (Introduction)</title>
 <link rel="stylesheet" href="style/default.css" />
 </head>
 <body>
 
-<h1>マインスイーパー</h1>
+<h1>Something Sweeper</h1>
 
 <h2>サイズと難易度を入力してください</h2>
 
@@ -18,7 +18,7 @@
 	<table class="configuration">
 		<tr>
 			<td>
-				横幅
+				width
 			</td>
 			<td>
 				<input type="text" name="width" value="5">
@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td>
-				高さ
+				height
 			</td>
 			<td>
 				<input type="text" name="height" value="5">
@@ -49,7 +49,7 @@
 			<% } %>
 	</table>
 
-<input type="submit" value="開始">
+<input type="submit" value="Start">
 </form>
 
 </body>

@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>マインスイーパ (ゲーム本編)</title>
+<title>Something Sweeper (main)</title>
 <link rel="stylesheet" href="style/default.css" />
 </head>
 <body>
 
-<h1>マインスイーパ</h1>
+<h1>Something Sweeper</h1>
 
 <jsp:include page="part/field-in-game.jsp"></jsp:include>
 

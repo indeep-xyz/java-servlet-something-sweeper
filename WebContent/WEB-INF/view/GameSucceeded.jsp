@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>マインスイーパ (成功)</title>
+<title>Something Sweeper (Succeeded)</title>
 <link rel="stylesheet" href="style/default.css" />
 </head>
 <body>
@@ -15,7 +15,7 @@ Random rand = new Random();
 String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "magenta", "olieve"};
 %>
 
-<h1>成功</h1>
+<h1>Succeeded</h1>
 
 <jsp:include page="part/retry-form.jsp"></jsp:include>
 
@@ -29,7 +29,7 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 				String color = colors[rand.nextInt(colors.length)];
 				%>
 				
-				<span style="color: <%= color %>">成功</span> 
+				<span style="color: <%= color %>">Yeah!</span> 
 			<% } %>
 			</marquee>
 		<% } %>
