@@ -15,16 +15,7 @@ int height = field.getHeight();
             Cell cell = field.getCell(index);
             %>
         <div class="col">
-            <%
-            int aroundSomething = cell.getAroundSomething();
-            String className = (cell.isSomething()) ? "something" : "plain";
-            %>
-            
-            <div class="opened <%= className %>">
-                <% if (aroundSomething > 0 && !(cell.isSomething())) { %>
-                    <%= aroundSomething %>
-                <% } %>
-            </div>
+            <%= cell.getHtml() %>
         </div>
         <% } %>
     </div>

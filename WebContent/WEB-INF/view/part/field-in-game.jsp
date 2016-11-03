@@ -16,17 +16,7 @@ int height = field.getHeight();
 	            Cell cell = field.getCell(index);
 	            %>
 	        <li class="col">
-	            <% if (cell.isOpen()) { 
-	                int aroundSomething = cell.getAroundSomething(); %>
-	                
-	                <div class="opened plain">
-	                    <% if (aroundSomething > 0) { %>
-	                        <%= aroundSomething %>
-	                    <% } %>
-	                </div>
-	            <% } else { %>
-	                <input type="submit" name="clicked" value="<%= index %>">
-	            <% } %>
+                <%= cell.getHtmlInGame(index) %>
 	        </li>
 	        <% } %>
 	    </ul>

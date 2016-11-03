@@ -50,6 +50,26 @@ public abstract class Cell
 	public abstract boolean isSomething();
 
 	/**
+	 * セルを表す HTML 文を返す。
+	 * @return セルを表わす HTML 文
+	 */
+	public abstract String getHtml();
+
+	/**
+	 * ゲームの状況に応じたセルを表す HTML 文を返す。
+	 * @return セルを表す HTML 文
+	 */
+	public abstract String getHtmlInGame(int index);
+	
+	/**
+	 * 未開放セルを表現する HTML 文を返す。
+	 * @return セルを表わす HTML 文
+	 */
+	protected String getUnknownHtml(int index) {
+		return "<input type=\"submit\" name=\"clicked\" value=\"" + index + "\">";
+	}
+	
+	/**
 	 * 周辺にある Something の数を返す
 	 * @return 周辺にある Something の数
 	 */
