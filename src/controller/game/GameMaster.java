@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.tool.ParameterAgent;
 import model.Field;
+import model.FieldFormatter;
 
 /**
  * ゲーム本編の制御用クラス
@@ -57,7 +58,7 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean tryFormatting() {
-		FieldCreator creator = new FieldCreator(this.request);
+		FieldFormatter creator = new FieldFormatter(this.request);
 		boolean formattable = creator.isFormattable();
 
 		if (formattable) {

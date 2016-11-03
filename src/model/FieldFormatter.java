@@ -1,17 +1,15 @@
-package controller.game;
+package model;
 
 import javax.servlet.http.HttpServletRequest;
 
 import controller.tool.ParameterAgent;
-import model.CellSurveillant;
-import model.Field;
 
 /**
  * 表データの初期化や作成を担当する
  * @author indeep-xyz
  *
  */
-public class FieldCreator {
+public class FieldFormatter {
 
 	/**
 	 * 横幅
@@ -32,7 +30,7 @@ public class FieldCreator {
 	 * コンストラクタ。
 	 * @param request リクエスト
 	 */
-	public FieldCreator(HttpServletRequest request) {
+	public FieldFormatter(HttpServletRequest request) {
 		initializeByRequestParameter(request);
 	}
 
