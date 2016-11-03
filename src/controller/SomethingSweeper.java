@@ -26,7 +26,8 @@ public class SomethingSweeper extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameMaster master = new GameMaster(request, response);
 		
-		if (master.tryFormatting()) {
+		if (master.isFieldFormattable()) {
+			master.formatField();
 			runGame(master, request, response);
 			return;
 		}

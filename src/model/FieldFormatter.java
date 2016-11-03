@@ -58,11 +58,7 @@ public class FieldFormatter {
 	 * 表データを新規作成する
 	 */
 	public Field create() {
-		Field field = createNiceTable();
-		FieldSurveillant surveillant = new FieldSurveillant(field);
-		surveillant.surveyAll();
-		
-		return field;
+		return createNiceTable();
 	}
 	
 	/**

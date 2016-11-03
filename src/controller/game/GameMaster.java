@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import controller.tool.ParameterAgent;
 import model.Field;
 import model.FieldFormatter;
+import model.FieldSurveillant;
 
 /**
  * ゲーム本編の制御用クラス
@@ -50,22 +51,27 @@ public class GameMaster {
 	}
 
 	/**
-	 * テーブルを初期化する状態であるか否かを検証する
-	 * @param request リクエスト
-	 * @param response レスポンス
+	 * リクエストの状態から field を初期化可能なら初期化し、そうでなければ初期化しない。
 	 * @return 初期化する状況がそろっていれば true
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public boolean tryFormatting() {
-		FieldFormatter creator = new FieldFormatter(this.request);
-		boolean formattable = creator.isFormattable();
-
-		if (formattable) {
-			this.field = creator.create();
-		}
+	public boolean isFieldFormattable() {
+		FieldFormatter formatter = new FieldFormatter(this.request);
+		return formatter.isFormattable();
+	}
+	
+	/**
+	 * field を初期化する。
+	 * @param formatter
+	 */
+	public void formatField() {
+		FieldFormatter formatter = new FieldFormatter(this.request);
+		Field field = formatter.create();
+		FieldSurveillant surveillant = new FieldSurveillant(field);
+		surveillant.surveyAll();
 		
-		return formattable;
+		this.field = field;
 	}
 
 	/**
