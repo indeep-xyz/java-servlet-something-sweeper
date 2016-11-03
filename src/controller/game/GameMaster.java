@@ -97,8 +97,7 @@ public class GameMaster {
 		ParameterAgent paramGetter = new ParameterAgent(request);
 		int id = paramGetter.getInt("clicked", -1);
 		
-		CellOpener opener = new CellOpener(this.field);
-		boolean isSomething = opener.openCell(id);
+		boolean isSomething = this.field.openCell(id);
 		
 		saveGameData();
 		

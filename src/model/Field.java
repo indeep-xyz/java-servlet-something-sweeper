@@ -127,9 +127,10 @@ public class Field
 	}
 
 	/**
-	 * セルを返す
-	 * @param id セルの ID
-	 * @return セル
+	 * 指定座標の Cell インスタンスを返す。
+	 * @param x セルの x 座標
+	 * @param y セルの y 座標
+	 * @return Cell インスタンス
 	 */
 	public Cell getCell(int x, int y) {
 		if (x < 0 || this.width <= x || y < 0 || this.height <= y){
@@ -140,9 +141,9 @@ public class Field
 	}
 	
 	/**
-	 * セルを返す
+	 * 指定 ID の Cell インスタンスを返す。
 	 * @param id セルの ID
-	 * @return セル
+	 * @return Cell インスタンス
 	 */
 	public Cell getCell(int id) {
 		if (id < 0 || this.cells.length <= id){
@@ -153,7 +154,7 @@ public class Field
 	}
 	
 	/**
-	 * 指定 ID のセルの座標を返す
+	 * 指定 ID のセルの座標を返す。
 	 * @param id セルの ID
 	 * @return 座標 ([0]: x, [1] : y)
 	 */
@@ -165,7 +166,7 @@ public class Field
 	}
 
 	/**
-	 * 指定座標のセルの ID を返す
+	 * 指定座標のセルの ID を返す。
 	 * @param x 座標
 	 * @param y 座標
 	 * @return セルの ID。範囲外の場合は -1
@@ -212,5 +213,39 @@ public class Field
 		}
 		
 		return count;
+	}
+
+	/**
+	 * 指定 ID のセルを開放状態にする。
+	 * @param id セルの ID
+	 * @return セルが Something の場合は true
+	 */
+	public boolean openCell(int id) {
+		Cell cell = getCell(id);
+		cell.open();
+		
+		if (cell.getAroundSomething() < 1) {
+			openAroundCells(id);
+		}
+		
+		return cell.isSomething();
+	}
+	
+	/**
+	 * 指定 ID のセルを開放状態にする。
+	 * @param id セルの ID
+	 */
+	public void openAroundCells(int id) {
+		CellSurveillant surveillant = new CellSurveillant(this);
+		int[] idArray = surveillant.getAroundCellIds(id);
+		
+		for (int i = 0; i < idArray.length; i++) {
+			int aroundId = idArray[i];
+			Cell cell = getCell(aroundId);
+			
+			if (cell != null && !(cell.isOpen())) {
+				openCell(aroundId);
+			}
+		}
 	}
 }
