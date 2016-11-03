@@ -5,7 +5,7 @@ package model;
  * @author indeep-xyz
  *
  */
-public class CellSurveillant {
+public class FieldSurveillant {
 
 	/**
 	 * 表データ
@@ -16,7 +16,7 @@ public class CellSurveillant {
 	 * コンストラクタ
 	 * @param table 表データ
 	 */
-	public CellSurveillant(Field table) {
+	public FieldSurveillant(Field table) {
 		this.table = table;
 	}
 

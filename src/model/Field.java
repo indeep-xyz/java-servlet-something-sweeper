@@ -236,7 +236,7 @@ public class Field
 	 * @param id セルの ID
 	 */
 	public void openAroundCells(int id) {
-		CellSurveillant surveillant = new CellSurveillant(this);
+		FieldSurveillant surveillant = new FieldSurveillant(this);
 		int[] idArray = surveillant.getAroundCellIds(id);
 		
 		for (int i = 0; i < idArray.length; i++) {

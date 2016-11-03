@@ -59,7 +59,7 @@ public class FieldFormatter {
 	 */
 	public Field create() {
 		Field field = createNiceTable();
-		CellSurveillant surveillant = new CellSurveillant(field);
+		FieldSurveillant surveillant = new FieldSurveillant(field);
 		surveillant.surveyAll();
 		
 		return field;
