@@ -58,7 +58,7 @@ public class GameMaster {
 	 */
 	public boolean tryFormatting() {
 		FieldCreator creator = new FieldCreator(this.request);
-		boolean formattable = creator.checkFormattable();
+		boolean formattable = creator.isFormattable();
 
 		if (formattable) {
 			this.field = creator.create();
@@ -96,7 +96,6 @@ public class GameMaster {
 	public boolean openCell() throws ServletException, IOException {
 		ParameterAgent paramGetter = new ParameterAgent(request);
 		int id = paramGetter.getInt("clicked", -1);
-		
 		boolean isSomething = this.field.openCell(id);
 		
 		saveGameData();

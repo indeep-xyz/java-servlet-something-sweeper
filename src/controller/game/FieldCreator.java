@@ -16,89 +16,46 @@ public class FieldCreator {
 	/**
 	 * 横幅
 	 */
-	private int width;
+	private Integer width;
 	
 	/**
 	 * 高さ
 	 */
-	private int height;
+	private Integer height;
 
 	/**
 	 * 難易度
 	 */
-	private int difficulty;
+	private Integer difficulty;
 
 	/**
-	 * フォーマットに必要なパラメータが揃っているか否か
-	 */
-	private boolean isFormattableParameters;
-
-	/**
-	 * コンストラクタ
-	 * @param request リクエスト用のオブジェクト
+	 * コンストラクタ。
+	 * @param request リクエスト
 	 */
 	public FieldCreator(HttpServletRequest request) {
-		prepareParameters(request);
+		initializeByRequestParameter(request);
 	}
-	
+
 	/**
-	 * 表データがフォーマット可能な状態かを検証する
+	 * リクエストのパラメータにより各フィールド値を初期化する。
+	 * @param request リクエスト
+	 */
+	private void initializeByRequestParameter(HttpServletRequest request) {
+		ParameterAgent pAgent = new ParameterAgent(request);
+
+		this.width      = pAgent.getInt("width", null);
+		this.height     = pAgent.getInt("height", null);
+		this.difficulty = pAgent.getInt("difficulty", null);
+	}
+
+	/**
+	 * 表データがフォーマット可能な状態かを返す。
 	 * @return フォーマット可能な状態であれば true
 	 */
-	public boolean checkFormattable() {
-		return isFormattableParameters;
+	public boolean isFormattable() {
+		return (this.width != null && this.height != null && this.difficulty != null);
 	}
 
-	/**
-	 * 表データがフォーマット可能な引数を保持しているかを検証する
-	 * @param request 
-	 * @return 保持していれば true
-	 * @throws SecurityException 
-	 * @throws NoSuchFieldException 
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
-	 */
-	private void prepareParameters(HttpServletRequest request) {
-		ParameterAgent pAgent = new ParameterAgent(request);
-		String[] names = {"width", "height", "difficulty"};
-		boolean isFormattableParameters = true;
-		
-		
-		for (int i = 0; i < names.length; i++) {
-			String name = names[i];
-			int n = pAgent.getInt(name, -1);
-			
-			if (n < 1) {
-				isFormattableParameters = false;
-				break;
-			}
-			
-			setParameter(name, n);
-		}
-
-		this.isFormattableParameters = isFormattableParameters;
-		return;
-	}
-	
-	/**
-	 * 指定のフィールドに値を記録する
-	 * @param name フィールド名
-	 * @param n 値
-	 */
-	private void setParameter(String name, int n) {
-		switch(name) {
-		case "width":
-			this.width = n;
-			break;
-		case "height":
-			this.height = n;
-			break;
-		case "difficulty":
-			this.difficulty = n;
-			break;
-		}
-	}
-	
 	/**
 	 * 表データを新規作成する
 	 */
