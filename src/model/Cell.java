@@ -66,7 +66,7 @@ public abstract class Cell
 	 * @return セルを表わす HTML 文
 	 */
 	protected String getUnknownHtml(int index) {
-		return "<input type=\"submit\" name=\"clicked\" value=\"" + index + "\">";
+		return "<input class=\"clickable\" type=\"submit\" name=\"clicked\" value=\"" + index + "\">";
 	}
 	
 	/**
