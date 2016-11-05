@@ -111,13 +111,10 @@ public class GameMaster {
 	}
 
 	/**
-	 * 未知の Something が存在するか否かを返す
+	 * まだ安全に開けることが出来るセル (Something 以外のセル) があるかを確認する。
 	 * @return 未知の Something が存在する場合は true
 	 */
-	public boolean checkUnknownSomething() {
-		int unknownSomethingCell = this.field.countUnknownSomethingCell();
-		int unknownCell = this.field.countUnknownCell();
-		
-		return (unknownSomethingCell != unknownCell);
+	public boolean hasNext() {
+		return this.field.containsSomethingUnknown();
 	}
 }

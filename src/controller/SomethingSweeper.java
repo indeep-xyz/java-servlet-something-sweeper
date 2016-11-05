@@ -46,8 +46,7 @@ public class SomethingSweeper extends HttpServlet {
 			runGameFailed(master, request, response);
 		}
 		else {
-			if (master.checkUnknownSomething()) {
-				master.saveGameData();
+			if (master.hasNext()) {
 				runGame(master, request, response);
 			}
 			else {

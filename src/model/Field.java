@@ -183,7 +183,7 @@ public class Field
 	 * 未知の Something の個数を数えて返す
 	 * @return 未知の Something の個数
 	 */
-	public int countUnknownSomethingCell() {
+	public int countSomethingUnknown() {
 		int count = 0;
 		
 		for (int i = 0; i < this.cells.length; i++) {
@@ -247,5 +247,13 @@ public class Field
 				openCell(aroundId);
 			}
 		}
+	}
+
+	/**
+	 * 未知の Something セルが存在するか否かを返す
+	 * @return 未知の Something が存在する場合は true
+	 */
+	public boolean containsSomethingUnknown() {
+		return (countSomethingUnknown() != countUnknownCell());
 	}
 }
