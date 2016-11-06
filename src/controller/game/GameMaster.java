@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import model.Field;
-import model.FieldFormatter;
-import model.FieldSurveillant;
+import model.field.Field;
+import model.field.FieldFormatter;
+import model.field.FieldSurveillant;
 
 /**
  * ゲーム本編の制御用クラス

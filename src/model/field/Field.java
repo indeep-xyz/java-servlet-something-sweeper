@@ -1,6 +1,9 @@
-package model;
+package model.field;
 
 import java.io.Serializable;
+
+import model.cell.Cell;
+import model.cell.CellCreator;
 
 /**
  * ボックス

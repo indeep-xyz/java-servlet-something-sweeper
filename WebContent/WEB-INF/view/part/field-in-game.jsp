@@ -1,6 +1,6 @@
-<%@page import="model.Cell"%>
+<%@page import="model.field.Field"%>
+<%@page import="model.cell.Cell"%>
 <%@page import="controller.game.GameMaster"%>
-<%@page import="model.Field"%>
 <%
 Field field = (Field) session.getAttribute(GameMaster.SESSION_FIELD_DATA);
 int width = field.getWidth();

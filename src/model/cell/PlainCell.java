@@ -1,4 +1,4 @@
-package model;
+package model.cell;
 
 /**
  * 安全なセルを表すクラス
