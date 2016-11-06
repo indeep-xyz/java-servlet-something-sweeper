@@ -30,7 +30,7 @@ public class Config extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GameMaster master = new GameMaster(request, response);
+		GameMaster master = new GameMaster(request);
 
 		if (master.isFieldFormattable()) {
 			master.formatField();

@@ -26,7 +26,7 @@ public class Game extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GameMaster master = new GameMaster(request, response);
+		GameMaster master = new GameMaster(request);
 		
 		if (master.loadGameData()) {
 			dispatchGame(request, response);
@@ -40,7 +40,7 @@ public class Game extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		GameMaster master = new GameMaster(request, response);
+		GameMaster master = new GameMaster(request);
 
 		if (master.loadGameData()) {
 			runGame(master, request, response);

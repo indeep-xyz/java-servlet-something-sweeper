@@ -2,13 +2,10 @@ package controller.game;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controller.tool.ParameterAgent;
 import model.Field;
 import model.FieldFormatter;
 import model.FieldSurveillant;
@@ -31,11 +28,6 @@ public class GameMaster {
 	private HttpServletRequest request;
 
 	/**
-	 * レスポンス用のオブジェクト
-	 */
-	private HttpServletResponse response;
-
-	/**
 	 * フィールドデータ
 	 */
 	private Field field;
@@ -45,9 +37,8 @@ public class GameMaster {
 	 * @param request リクエスト用のオブジェクト
 	 * @param response レスポンス用のオブジェクト
 	 */
-	public GameMaster(HttpServletRequest request, HttpServletResponse response) {
+	public GameMaster(HttpServletRequest request) {
 		this.request = request;
-		this.response = response;
 	}
 
 	/**
@@ -82,8 +73,8 @@ public class GameMaster {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void saveGameData() throws ServletException, IOException {
-		HttpSession session = request.getSession();
+	private void saveGameData() throws ServletException, IOException {
+		HttpSession session = this.request.getSession();
 		session.setAttribute(SESSION_FIELD_DATA, this.field);
 	}
 
@@ -94,7 +85,7 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean loadGameData() throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = this.request.getSession();
 		this.field = (Field) session.getAttribute(SESSION_FIELD_DATA);
 		
 		return (this.field != null);
