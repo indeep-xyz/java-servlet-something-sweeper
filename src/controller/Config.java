@@ -34,12 +34,11 @@ public class Config extends HttpServlet {
 
 		if (master.isFieldFormattable()) {
 			master.formatField();
-			master.saveGameData();
 			redirectToGame(response);
-			return;
 		}
-		
-		dispatchConfig(request, response);
+		else {
+			dispatchConfig(request, response);
+		}
 	}
 
 	/**
@@ -49,7 +48,7 @@ public class Config extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void dispatchConfig(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void dispatchConfig(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/Config.jsp");
 		dispatcher.forward(request, response);
 	}

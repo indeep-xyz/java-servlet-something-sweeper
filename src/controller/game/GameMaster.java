@@ -62,16 +62,19 @@ public class GameMaster {
 	}
 	
 	/**
-	 * field を初期化する。
+	 * field を初期化して状態を記録する。
 	 * @param formatter
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	public void formatField() {
+	public void formatField() throws ServletException, IOException {
 		FieldFormatter formatter = new FieldFormatter(this.request);
 		Field field = formatter.create();
 		FieldSurveillant surveillant = new FieldSurveillant(field);
 		surveillant.surveyAll();
 		
 		this.field = field;
+		saveGameData();
 	}
 
 	/**
