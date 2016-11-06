@@ -10,14 +10,14 @@ public class FieldSurveillant {
 	/**
 	 * 表データ
 	 */
-	private Field table;
+	private Field field;
 	
 	/**
 	 * コンストラクタ
-	 * @param table 表データ
+	 * @param field 表データ
 	 */
-	public FieldSurveillant(Field table) {
-		this.table = table;
+	public FieldSurveillant(Field field) {
+		this.field = field;
 	}
 
 	/**
@@ -25,7 +25,7 @@ public class FieldSurveillant {
 	 * 
 	 */
 	public void surveyAll() {
-		Cell[] cells = this.table.getCells();
+		Cell[] cells = this.field.getCells();
 		
 		for (int i = 0; i < cells.length; i++) {
 			survey(i);
@@ -49,7 +49,7 @@ public class FieldSurveillant {
 			}
 		}
 		
-		this.table.getCell(id).setAroundSomething(somethingCount);
+		this.field.getCell(id).setAroundSomething(somethingCount);
 	}
 	
 	/**
@@ -63,7 +63,7 @@ public class FieldSurveillant {
 		int[] idArray = getAroundCellIds(id);
 
 		for (int i = 0; i < idArray.length; i++) {
-			cells[i] = this.table.getCell(idArray[i]);
+			cells[i] = this.field.getCell(idArray[i]);
 		}
 		
 		return cells;
@@ -77,7 +77,7 @@ public class FieldSurveillant {
 	 * 
 	 */
 	public int[] getAroundCellIds(int id) {
-		Field t = this.table;
+		Field t = this.field;
 		int[] coord = t.getCellCoordinates(id);
 		int[] idArray = new int[] {
 				// 左上、上、右上
