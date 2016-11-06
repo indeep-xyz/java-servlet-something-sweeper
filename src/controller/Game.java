@@ -81,7 +81,7 @@ public class Game extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void dispatchGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void dispatchGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/Game.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -92,7 +92,7 @@ public class Game extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void dispatchGameFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void dispatchGameFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameFailed.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -102,7 +102,7 @@ public class Game extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void dispatchGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void dispatchGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameSucceeded.jsp");
 		dispatcher.forward(request, response);
 	}
