@@ -159,13 +159,14 @@ public class Field
 	/**
 	 * 指定 ID のセルの座標を返す。
 	 * @param id セルの ID
-	 * @return 座標 ([0]: x, [1] : y)
+	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null
 	 */
 	public int[] getCellCoordinates(int id) {
-		int width = this.getWidth();
-		int[] coordinates = {id % width, id / width};
+		if (getCell(id) != null) {
+			return new int[]{id % this.width, id / this.width};
+		}
 		
-		return coordinates;
+		return null;
 	}
 
 	/**
