@@ -14,10 +14,11 @@ import controller.game.GameMaster;
 import model.FieldFormatter;
 
 /**
- * Servlet implementation class SomethingSweeper
+ * ゲーム画面
+ * @author indeep-xyz
  */
-@WebServlet("/SomethingSweeper")
-public class SomethingSweeper extends HttpServlet {
+@WebServlet("/Game")
+public class Game extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -26,13 +27,12 @@ public class SomethingSweeper extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameMaster master = new GameMaster(request, response);
 		
-		if (master.isFieldFormattable()) {
-			master.formatField();
-			runGame(master, request, response);
+		if (!master.loadGameData()) {
+			redirectToConfig(response);
 			return;
 		}
 		
-		runIntroduction(request, response);
+		runGame(master, request, response);
 	}
 
 	/**
@@ -40,7 +40,11 @@ public class SomethingSweeper extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameMaster master = new GameMaster(request, response);
-		master.loadGameData();
+
+		if (!master.loadGameData()) {
+			redirectToConfig(response);
+			return;
+		}
 		
 		if (master.openCell()){
 			runGameFailed(master, request, response);
@@ -53,18 +57,6 @@ public class SomethingSweeper extends HttpServlet {
 				runGameSucceeded(request, response);
 			}
 		}
-	}
-
-	/**
-	 * 初期画面の表示
-	 * @param request リクエスト
-	 * @param response レスポンス
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void runIntroduction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/Introduction.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -101,6 +93,15 @@ public class SomethingSweeper extends HttpServlet {
 	public void runGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameSucceeded.jsp");
 		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * ゲーム画面へのリダイレクト
+	 * @param response レスポンス
+	 * @throws IOException
+	 */
+	private void redirectToConfig(HttpServletResponse response) throws IOException {
+		response.sendRedirect("Config");
 	}
 }
 

@@ -86,12 +86,15 @@ public class GameMaster {
 
 	/**
 	 * ゲーム状態の読み込み
+	 * @return 正常に読み込みができれば true
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void loadGameData() throws ServletException, IOException {
+	public boolean loadGameData() throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		this.field = (Field) session.getAttribute(SESSION_FIELD_DATA);
+		
+		return (this.field != null);
 	}
 
 	/**

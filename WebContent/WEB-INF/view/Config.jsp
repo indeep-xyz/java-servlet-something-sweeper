@@ -15,7 +15,7 @@
 
 <h2>サイズと難易度を入力してください</h2>
 
-<form action="SomethingSweeper" action="get">
+<form action="Config" method="post">
 	
 	<table class="configuration">
 		<tr>

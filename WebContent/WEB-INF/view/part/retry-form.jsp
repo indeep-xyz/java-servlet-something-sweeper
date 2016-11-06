@@ -9,7 +9,7 @@ int height = field.getHeight();
 int difficulty = field.getDifficulty();
 %>
 
-<form action="SomethingSweeper" method="get">
+<form action="Config" method="post">
     <input type="hidden" name="width" value="<%= width %>">
     <input type="hidden" name="height" value="<%= height %>">
     <input type="hidden" name="difficulty" value="<%= difficulty %>">
@@ -18,7 +18,7 @@ int difficulty = field.getDifficulty();
     </p>
 </form>
 
-<form action="SomethingSweeper" method="get">
+<form action="Config" method="get">
     <p>
         <input type="submit" value="設定を初期化して最初から">
     </p>

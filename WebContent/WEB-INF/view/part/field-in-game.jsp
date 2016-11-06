@@ -7,7 +7,7 @@ int width = field.getWidth();
 int height = field.getHeight();
 %>
 
-<form action="SomethingSweeper" method="post">
+<form action="Game" method="post">
 	<section id="field">
 	    <% for(int y = 0; y < height; y++) { %>
 	    <ul class="row">
