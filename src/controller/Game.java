@@ -66,8 +66,6 @@ public class Game extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void runGame(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		master.saveGameData();
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/Game.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -79,8 +77,6 @@ public class Game extends HttpServlet {
 	 * @throws IOException
 	 */
 	public void runGameFailed(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		master.saveGameData();
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameFailed.jsp");
 		dispatcher.forward(request, response);
 	}
