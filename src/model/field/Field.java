@@ -261,11 +261,10 @@ public class Field
 	
 	/**
 	 * 指定 ID のセルの周囲のセルを開放状態にする。
-	 * @param centerId セルの ID
+	 * @param centerId 中心となるセルの ID
 	 */
 	private void openAroundCells(int centerId) {
-		FieldSurveillant surveillant = new FieldSurveillant(this);
-		int[] aroundIdArray = surveillant.getAroundCellIds(centerId);
+		int[] aroundIdArray = getAroundCellIds(centerId);
 		
 		for (int i = 0; i < aroundIdArray.length; i++) {
 			int aroundId = aroundIdArray[i];
@@ -276,5 +275,48 @@ public class Field
 				openCell(aroundId);
 			}
 		}
+	}
+
+	/**
+	 * 指定セル ID の周りにあるセルを配列にして返す
+	 * 配列は null を含む可能性がある
+	 * @param centerId 中心となるセルの ID
+	 * @return 周りにあるセル
+	 */
+	public Cell[] getAroundCells(int centerId) {
+		Cell[] aroundCellArray = new Cell[8];
+		int[] aroundIdArray = getAroundCellIds(centerId);
+
+		for (int i = 0; i < aroundIdArray.length; i++) {
+			aroundCellArray[i] = getCell(aroundIdArray[i]);
+		}
+		
+		return aroundCellArray;
+	}
+
+	/**
+	 * 指定セル ID の周りにあるセルの ID を配列にして返す
+	 * 配列は null を含む可能性がある
+	 * @param centerId 中心となるセルの ID
+	 * @return 周りにあるセルの ID
+	 * 
+	 */
+	private int[] getAroundCellIds(int centerId) {
+		int[] coord =  getCellCoordinates(centerId);
+		return new int[] {
+				// 左上、上、右上
+				getCellId(coord[0] - 1, coord[1] - 1),
+				getCellId(coord[0]    , coord[1] - 1),
+				getCellId(coord[0] + 1, coord[1] - 1),
+
+				// 左、右
+				getCellId(coord[0] - 1, coord[1]),
+				getCellId(coord[0] + 1, coord[1]),
+
+				// 左下、下、右下
+				getCellId(coord[0] - 1, coord[1] + 1),
+				getCellId(coord[0]    , coord[1] + 1),
+				getCellId(coord[0] + 1, coord[1] + 1)
+		};
 	}
 }
