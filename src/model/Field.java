@@ -180,10 +180,10 @@ public class Field
 	}
 
 	/**
-	 * 未知の Something の個数を数えて返す
+	 * 未知の Something セルの個数を数えて返す
 	 * @return 未知の Something の個数
 	 */
-	public int countSomethingUnknown() {
+	public int countSomethingUnknownCells() {
 		int count = 0;
 		
 		for (int i = 0; i < this.cells.length; i++) {
@@ -195,6 +195,14 @@ public class Field
 		}
 
 		return count;
+	}
+
+	/**
+	 * 未知の安全なセルの個数を数えて返す
+	 * @return 未知の Something の個数
+	 */
+	public int countUnknownSafetyCells() {
+		return countUnknownCell() - countSomethingUnknownCells();
 	}
 
 	/**
@@ -216,44 +224,53 @@ public class Field
 	}
 
 	/**
-	 * 指定 ID のセルを開放状態にする。
+	 * 指定 ID のセルが Something か否かを返す。
 	 * @param id セルの ID
-	 * @return セルが Something の場合は true
+	 * @return セルが Something なら true
 	 */
-	public boolean openCell(int id) {
+	public boolean isSomething(int id){
 		Cell cell = getCell(id);
-		cell.open();
 		
-		if (cell.getAroundSomething() < 1) {
-			openAroundCells(id);
+		if (cell != null
+				&& cell.isSomething()) {
+			return true;
 		}
 		
-		return cell.isSomething();
+		return false;
 	}
 	
 	/**
 	 * 指定 ID のセルを開放状態にする。
 	 * @param id セルの ID
 	 */
-	public void openAroundCells(int id) {
-		FieldSurveillant surveillant = new FieldSurveillant(this);
-		int[] idArray = surveillant.getAroundCellIds(id);
+	public void openCell(int id) {
+		Cell cell = getCell(id);
 		
-		for (int i = 0; i < idArray.length; i++) {
-			int aroundId = idArray[i];
-			Cell cell = getCell(aroundId);
+		if (cell != null) {
+			cell.open();
 			
-			if (cell != null && !(cell.isOpen())) {
-				openCell(aroundId);
+			if (cell.getAroundSomething() < 1) {
+				openAroundCells(id);
 			}
 		}
 	}
-
+	
 	/**
-	 * 未知の Something セルが存在するか否かを返す
-	 * @return 未知の Something が存在する場合は true
+	 * 指定 ID のセルの周囲のセルを開放状態にする。
+	 * @param centerId セルの ID
 	 */
-	public boolean containsSomethingUnknown() {
-		return (countSomethingUnknown() != countUnknownCell());
+	private void openAroundCells(int centerId) {
+		FieldSurveillant surveillant = new FieldSurveillant(this);
+		int[] aroundIdArray = surveillant.getAroundCellIds(centerId);
+		
+		for (int i = 0; i < aroundIdArray.length; i++) {
+			int aroundId = aroundIdArray[i];
+			Cell cell = getCell(aroundId);
+			
+			if (cell != null
+					&& !(cell.isOpen())) {
+				openCell(aroundId);
+			}
+		}
 	}
 }

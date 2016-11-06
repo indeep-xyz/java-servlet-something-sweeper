@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import controller.game.GameMaster;
+import controller.tool.ParameterAgent;
 import model.FieldFormatter;
 
 /**
@@ -27,12 +28,12 @@ public class Game extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameMaster master = new GameMaster(request, response);
 		
-		if (!master.loadGameData()) {
-			redirectToConfig(response);
-			return;
+		if (master.loadGameData()) {
+			dispatchGame(request, response);
 		}
-		
-		runGame(master, request, response);
+		else {
+			redirectToConfig(response);
+		}
 	}
 
 	/**
@@ -41,31 +42,46 @@ public class Game extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GameMaster master = new GameMaster(request, response);
 
-		if (!master.loadGameData()) {
-			redirectToConfig(response);
-			return;
-		}
-		
-		if (master.openCell()){
-			runGameFailed(master, request, response);
+		if (master.loadGameData()) {
+			runGame(master, request, response);
 		}
 		else {
-			if (master.hasNext()) {
-				runGame(master, request, response);
-			}
-			else {
-				runGameSucceeded(request, response);
-			}
+			redirectToConfig(response);
 		}
 	}
 
+	/**
+	 * ゲームの状態によってセルの開放と表示の処理をおこなう。
+	 * @param master ゲームの状態
+	 * @param request リクエスト
+	 * @param response レスポンス
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void runGame(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ParameterAgent paramGetter = new ParameterAgent(request);
+		int id = paramGetter.getInt("clicked", -1);
+		
+		master.openCell(id);
+		
+		if (master.isFailed(id)){
+			dispatchGameFailed(request, response);
+		}
+		else if (master.isCompleted()) {
+			dispatchGameSucceeded(request, response);
+		}
+		else {
+			dispatchGame(request, response);
+		}
+	}
+	
 	/**
 	 * ゲーム画面の表示
 	 * @param master 
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void runGame(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void dispatchGame(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/Game.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -76,7 +92,7 @@ public class Game extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void runGameFailed(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void dispatchGameFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameFailed.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -86,7 +102,7 @@ public class Game extends HttpServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void runGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void dispatchGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameSucceeded.jsp");
 		dispatcher.forward(request, response);
 	}

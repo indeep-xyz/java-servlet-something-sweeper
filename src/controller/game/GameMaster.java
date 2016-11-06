@@ -98,26 +98,31 @@ public class GameMaster {
 	}
 
 	/**
-	 * セルを開ける
+	 * 安全なセルを全て開放済みにしたかを確認する。
+	 * @return 未知の Something が存在しない場合は true
+	 */
+	public boolean isCompleted() {
+		return (this.field.countUnknownSafetyCells() < 1);
+	}
+	
+	/**
+	 * 指定 ID のセルが Something か否かを返す。
+	 * @param id セルの ID
+	 * @return セルが Something なら true
+	 */
+	public boolean isFailed(int id) {
+		return this.field.isSomething(id);
+	}
+
+	/**
+	 * セルを開けて状態を記録する。
 	 * @return セルが Something の場合は true
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public boolean openCell() throws ServletException, IOException {
-		ParameterAgent paramGetter = new ParameterAgent(request);
-		int id = paramGetter.getInt("clicked", -1);
-		boolean isSomething = this.field.openCell(id);
-		
+	public void openCell(int id) throws ServletException, IOException {
+		this.field.openCell(id);
 		saveGameData();
-		
-		return isSomething;
 	}
 
-	/**
-	 * まだ安全に開けることが出来るセル (Something 以外のセル) があるかを確認する。
-	 * @return 未知の Something が存在する場合は true
-	 */
-	public boolean hasNext() {
-		return this.field.containsSomethingUnknown();
-	}
 }

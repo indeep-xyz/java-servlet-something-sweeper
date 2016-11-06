@@ -72,7 +72,7 @@ public class FieldFormatter {
 		while (limit-- > 0) {
 			field = new Field(this.width, this.height, this.difficulty);
 			
-			if (field.countSomethingUnknown() > this.difficulty + 1) {
+			if (field.countSomethingUnknownCells() > this.difficulty + 1) {
 				break;
 			}
 		}
