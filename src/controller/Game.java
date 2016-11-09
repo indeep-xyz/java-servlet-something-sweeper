@@ -15,7 +15,7 @@ import controller.tool.ParameterAgent;
 import model.field.FieldFormatter;
 
 /**
- * ゲーム画面
+ * ゲーム画面の表示をおこなうサーブレット。
  * @author indeep-xyz
  */
 @WebServlet("/Game")
@@ -23,6 +23,9 @@ public class Game extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * GET によるアクセス。
+	 * 読み込み可能なゲーム状態があればそれを表示し、なければコンフィグ画面へ移動する。
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -37,6 +40,10 @@ public class Game extends HttpServlet {
 	}
 
 	/**
+	 * POST によるアクセス。
+	 * 読み込み可能なゲーム状態があれば受け取った値と状況によって処理と画面表示をおこなう。
+	 * なければコンフィグ画面へ移動する。
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -51,7 +58,8 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * ゲームの状態によってセルの開放と表示の処理をおこなう。
+	 * ゲームの状態によって処理を行い、セルの開放と表示の処理をおこなう。
+	 * 
 	 * @param master ゲームの状態
 	 * @param request リクエスト
 	 * @param response レスポンス
@@ -76,7 +84,8 @@ public class Game extends HttpServlet {
 	}
 	
 	/**
-	 * ゲーム画面の表示
+	 * ゲーム画面を表示する。
+	 * 
 	 * @param master 
 	 * @throws ServletException
 	 * @throws IOException
@@ -87,7 +96,8 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム失敗画面の表示
+	 * ゲーム失敗画面を表示する。
+	 * 
 	 * @param master 
 	 * @throws ServletException
 	 * @throws IOException
@@ -98,7 +108,8 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム成功画面の表示
+	 * ゲーム成功画面を表示する。
+	 * 
 	 * @throws ServletException
 	 * @throws IOException
 	 */
@@ -108,7 +119,8 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム画面へのリダイレクト
+	 * コンフィグ画面へのリダイレクト。
+	 * 
 	 * @param response レスポンス
 	 * @throws IOException
 	 */
