@@ -50,7 +50,7 @@ public class Field
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setDifficulty(difficulty);
-		initTable();
+		initializeCells();
 	}
 
 	/**
@@ -128,9 +128,9 @@ public class Field
 	}
 	
 	/**
-	 * 領域データの初期化。
+	 * 各セルの初期化。
 	 */
-	private void initTable() {
+	private void initializeCells() {
 		int size = this.width * this.height;
 		Cell[] cells = new Cell[size];
 		CellCreator cellCreator = new CellCreator(this.difficulty);
