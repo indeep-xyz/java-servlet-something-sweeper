@@ -58,14 +58,14 @@ public class FieldFormatter {
 	 * 表データを新規作成する
 	 */
 	public Field create() {
-		return createNiceTable();
+		return createNiceField();
 	}
 	
 	/**
 	 * Something がある程度あるテーブルを作成する
 	 * @return 表データ
 	 */
-	public Field createNiceTable() {
+	public Field createNiceField() {
 		Field field = null;
 		int limit = 20;
 		
