@@ -6,7 +6,7 @@ import model.cell.Cell;
 import model.cell.CellCreator;
 
 /**
- * ボックス
+ * ゲーム用の領域を表現・保持するクラス。
  * @author indeep-xyz
  *
  */
@@ -14,22 +14,22 @@ public class Field
 		implements Serializable {
 	
 	/**
-	 * 横幅
+	 * 横幅。
 	 */
 	private int width;
 
 	/**
-	 * 縦幅
+	 * 縦幅。
 	 */
 	private int height;
 
 	/**
-	 * 難易度
+	 * ゲームの難易度。
 	 */
 	private int difficulty;
 	
 	/**
-	 * 各セルの状態を保持するテーブル
+	 * 領域内の各セル。
 	 */
 	private Cell[] cells;
 	
@@ -40,7 +40,11 @@ public class Field
 	}
 
 	/**
-	 * 縦横を指定するコンストラクタ
+	 * コンストラクタ。
+	 * 
+	 * @param width 横幅
+	 * @param height 縦幅
+	 * @param difficulty 難易度
 	 */
 	public Field(int width, int height, int difficulty){
 		this.setWidth(width);
@@ -50,39 +54,46 @@ public class Field
 	}
 
 	/**
-	 * 表を返す
-	 * @return 表データ
+	 * 領域データを返す。
+	 * シリアライズ用。
+	 * 
+	 * @return 領域データ
 	 */
 	public Cell[] getCells() {
 		return cells;
 	}
 
 	/**
-	 * 表データをセットする
-	 * @param field 表データ
+	 * 領域データをセットする。
+	 * シリアライズ用。
+	 * 
+	 * @param field 領域データ
 	 */
 	public void setTable(Cell[] field) {
 		this.cells = field;
 	}
 
 	/**
-	 * 高さを返す
-	 * @return 高さ
+	 * 縦幅を返す。
+	 * 
+	 * @return 縦幅
 	 */
 	public int getHeight() {
 		return height;
 	}
 
 	/**
-	 * 高さを設定する
-	 * @param height 高さ
+	 * 縦幅を設定する。
+	 * 
+	 * @param height 縦幅
 	 */
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
 	/**
-	 * 横幅を返す
+	 * 横幅を返す。
+	 * 
 	 * @return 横幅
 	 */
 	public int getWidth() {
@@ -90,7 +101,8 @@ public class Field
 	}
 
 	/**
-	 * 横幅を設定する
+	 * 横幅を設定する。
+	 * 
 	 * @param width 横幅
 	 */
 	public void setWidth(int width) {
@@ -98,24 +110,25 @@ public class Field
 	}
 
 	/**
-	 * 難易度を返す
-	 * @return 難易度
+	 * ゲームの難易度を返す。
+	 * 
+	 * @return ゲームの難易度
 	 */
 	public int getDifficulty() {
 		return difficulty;
 	}
 
 	/**
-	 * 難易度を設定する
-	 * @param difficulty 難易度
+	 * ゲームの難易度を設定する。
+	 * 
+	 * @param difficulty ゲームの難易度
 	 */
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
 	
 	/**
-	 * 表データの初期化
-	 * @param difficulty 難易度
+	 * 領域データの初期化。
 	 */
 	private void initTable() {
 		int size = this.width * this.height;
@@ -130,10 +143,11 @@ public class Field
 	}
 
 	/**
-	 * 指定座標の Cell インスタンスを返す。
+	 * 指定座標のセルを返す。
+	 * 
 	 * @param x セルの x 座標
 	 * @param y セルの y 座標
-	 * @return Cell インスタンス
+	 * @return セル
 	 */
 	public Cell getCell(int x, int y) {
 		if (x < 0 || this.width <= x || y < 0 || this.height <= y){
@@ -144,9 +158,10 @@ public class Field
 	}
 	
 	/**
-	 * 指定 ID の Cell インスタンスを返す。
+	 * 指定 ID のセルを返す。
+	 * 
 	 * @param id セルの ID
-	 * @return Cell インスタンス
+	 * @return セル
 	 */
 	public Cell getCell(int id) {
 		if (id < 0 || this.cells.length <= id){
@@ -158,6 +173,7 @@ public class Field
 	
 	/**
 	 * 指定 ID のセルの座標を返す。
+	 * 
 	 * @param id セルの ID
 	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null
 	 */
@@ -171,6 +187,7 @@ public class Field
 
 	/**
 	 * 指定座標のセルの ID を返す。
+	 * 
 	 * @param x 座標
 	 * @param y 座標
 	 * @return セルの ID。範囲外の場合は -1
@@ -184,8 +201,9 @@ public class Field
 	}
 
 	/**
-	 * 未知の Something セルの個数を数えて返す
-	 * @return 未知の Something の個数
+	 * 未知の Something セルの個数を数えて返す。
+	 * 
+	 * @return 未知の Something セルの個数
 	 */
 	public int countSomethingUnknownCells() {
 		int count = 0;
@@ -202,16 +220,18 @@ public class Field
 	}
 
 	/**
-	 * 未知の安全なセルの個数を数えて返す
-	 * @return 未知の Something の個数
+	 * 未知の安全なセルの個数を数えて返す。
+	 * 
+	 * @return 未知の非 Something セルの個数
 	 */
 	public int countUnknownSafetyCells() {
 		return countUnknownCell() - countSomethingUnknownCells();
 	}
 
 	/**
-	 * 未知のセルの個数を数えて返す
-	 * @return 未知の Something の個数
+	 * 未知のセルの個数を数えて返す。
+	 * 
+	 * @return 未知のセルの個数
 	 */
 	public int countUnknownCell() {
 		int count = 0;
@@ -229,6 +249,7 @@ public class Field
 
 	/**
 	 * 指定 ID のセルが Something か否かを返す。
+	 * 
 	 * @param id セルの ID
 	 * @return セルが Something なら true
 	 */
@@ -260,7 +281,8 @@ public class Field
 	}
 	
 	/**
-	 * 指定 ID のセルの周囲のセルを開放状態にする。
+	 * 指定セル ID の周りにあるセルを開放状態にする。
+	 * 
 	 * @param centerId 中心となるセルの ID
 	 */
 	private void openAroundCells(int centerId) {
@@ -278,8 +300,9 @@ public class Field
 	}
 
 	/**
-	 * 指定セル ID の周りにあるセルを配列にして返す
-	 * 配列は null を含む可能性がある
+	 * 指定セル ID の周りにあるセルを配列にして返す。
+	 * セルのない位置には null が入る。
+	 * 
 	 * @param centerId 中心となるセルの ID
 	 * @return 周りにあるセル
 	 */
@@ -295,8 +318,9 @@ public class Field
 	}
 
 	/**
-	 * 指定セル ID の周りにあるセルの ID を配列にして返す
-	 * 配列は null を含む可能性がある
+	 * 指定セル ID の周りにあるセルの ID を配列にして返す。
+	 * セルのない位置には -1 が入る。
+	 * 
 	 * @param centerId 中心となるセルの ID
 	 * @return 周りにあるセルの ID
 	 * 
