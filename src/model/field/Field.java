@@ -41,7 +41,6 @@ public class Field
 
 	/**
 	 * コンストラクタ。
-	 * 
 	 * @param width 横幅
 	 * @param height 縦幅
 	 * @param difficulty 難易度
@@ -75,7 +74,6 @@ public class Field
 
 	/**
 	 * 縦幅を返す。
-	 * 
 	 * @return 縦幅
 	 */
 	public int getHeight() {
@@ -84,7 +82,6 @@ public class Field
 
 	/**
 	 * 縦幅を設定する。
-	 * 
 	 * @param height 縦幅
 	 */
 	public void setHeight(int height) {
@@ -93,7 +90,6 @@ public class Field
 
 	/**
 	 * 横幅を返す。
-	 * 
 	 * @return 横幅
 	 */
 	public int getWidth() {
@@ -111,7 +107,6 @@ public class Field
 
 	/**
 	 * ゲームの難易度を返す。
-	 * 
 	 * @return ゲームの難易度
 	 */
 	public int getDifficulty() {
@@ -120,7 +115,6 @@ public class Field
 
 	/**
 	 * ゲームの難易度を設定する。
-	 * 
 	 * @param difficulty ゲームの難易度
 	 */
 	public void setDifficulty(int difficulty) {
@@ -144,7 +138,6 @@ public class Field
 
 	/**
 	 * 指定座標のセルを返す。
-	 * 
 	 * @param x セルの x 座標
 	 * @param y セルの y 座標
 	 * @return セル
@@ -159,7 +152,6 @@ public class Field
 	
 	/**
 	 * 指定 ID のセルを返す。
-	 * 
 	 * @param id セルの ID
 	 * @return セル
 	 */
@@ -173,7 +165,6 @@ public class Field
 	
 	/**
 	 * 指定 ID のセルの座標を返す。
-	 * 
 	 * @param id セルの ID
 	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null
 	 */
@@ -187,7 +178,6 @@ public class Field
 
 	/**
 	 * 指定座標のセルの ID を返す。
-	 * 
 	 * @param x 座標
 	 * @param y 座標
 	 * @return セルの ID。範囲外の場合は -1
@@ -202,7 +192,6 @@ public class Field
 
 	/**
 	 * 未知の Something セルの個数を数えて返す。
-	 * 
 	 * @return 未知の Something セルの個数
 	 */
 	public int countSomethingUnknownCells() {
@@ -221,7 +210,6 @@ public class Field
 
 	/**
 	 * 未知の安全なセルの個数を数えて返す。
-	 * 
 	 * @return 未知の非 Something セルの個数
 	 */
 	public int countUnknownSafetyCells() {
@@ -230,7 +218,6 @@ public class Field
 
 	/**
 	 * 未知のセルの個数を数えて返す。
-	 * 
 	 * @return 未知のセルの個数
 	 */
 	public int countUnknownCell() {
@@ -249,7 +236,6 @@ public class Field
 
 	/**
 	 * 指定 ID のセルが Something か否かを返す。
-	 * 
 	 * @param id セルの ID
 	 * @return セルが Something なら true
 	 */
@@ -282,7 +268,6 @@ public class Field
 	
 	/**
 	 * 指定セル ID の周りにあるセルを開放状態にする。
-	 * 
 	 * @param centerId 中心となるセルの ID
 	 */
 	private void openAroundCells(int centerId) {

@@ -5,24 +5,24 @@ import javax.servlet.http.HttpServletRequest;
 import controller.tool.ParameterAgent;
 
 /**
- * 表データの初期化や作成を担当する
+ * 領域データの初期化や作成を担当する。
  * @author indeep-xyz
  *
  */
 public class FieldFormatter {
 
 	/**
-	 * 横幅
+	 * 横幅。
 	 */
 	private Integer width;
 	
 	/**
-	 * 高さ
+	 * 縦幅。
 	 */
 	private Integer height;
 
 	/**
-	 * 難易度
+	 * ゲームの難易度。
 	 */
 	private Integer difficulty;
 
@@ -47,7 +47,7 @@ public class FieldFormatter {
 	}
 
 	/**
-	 * 表データがフォーマット可能な状態かを返す。
+	 * 領域データがフォーマット可能な状態かを返す。
 	 * @return フォーマット可能な状態であれば true
 	 */
 	public boolean isFormattable() {
@@ -55,15 +55,15 @@ public class FieldFormatter {
 	}
 
 	/**
-	 * 表データを新規作成する
+	 * 表データを新規作成する。
 	 */
 	public Field create() {
 		return createNiceField();
 	}
 	
 	/**
-	 * Something がある程度あるテーブルを作成する
-	 * @return 表データ
+	 * Something をある程度保持する領域データを作成する。
+	 * @return 領域データ
 	 */
 	public Field createNiceField() {
 		Field field = null;
@@ -79,5 +79,4 @@ public class FieldFormatter {
 		
 		return field;
 	}
-
 }

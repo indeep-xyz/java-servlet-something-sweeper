@@ -3,28 +3,27 @@ package model.field;
 import model.cell.Cell;
 
 /**
- * セル周辺の情報を調査するクラス
+ * セル周辺の情報を調査するクラス。
  * @author indeep-xyz
  *
  */
 public class FieldSurveillant {
 
 	/**
-	 * 表データ
+	 * 領域データ。
 	 */
 	private Field field;
 	
 	/**
-	 * コンストラクタ
-	 * @param field 表データ
+	 * コンストラクタ。
+	 * @param field 領域データ
 	 */
 	public FieldSurveillant(Field field) {
 		this.field = field;
 	}
 
 	/**
-	 * セルの周りにあるセルを配列にして返す
-	 * 
+	 * セルの周りにあるセルを配列にして返す。
 	 */
 	public void surveyAll() {
 		Cell[] cells = this.field.getCells();
@@ -35,9 +34,8 @@ public class FieldSurveillant {
 	}
 	
 	/**
-	 * セルの周りにある Something セルをもとに、セルの周囲にある Something の数を設定する
+	 * 指定したセルに、周りにある Something セルの数を設定する。
 	 * @param id セルの ID
-	 * 
 	 */
 	private void survey(int id) {
 		Cell[] aroundCells = this.field.getAroundCells(id);
@@ -53,5 +51,4 @@ public class FieldSurveillant {
 		
 		this.field.getCell(id).setAroundSomething(somethingCount);
 	}
-	
 }
