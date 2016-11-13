@@ -5,7 +5,7 @@ package model.cell;
  * @author indeep-xyz
  *
  */
-public class PlainCell
+class PlainCell
 		extends Cell {
 
 	public PlainCell() {

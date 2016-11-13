@@ -5,7 +5,7 @@ package model.cell;
  * @author indeep-xyz
  *
  */
-public class SomethingCell
+class SomethingCell
 		extends Cell {
 
 	public SomethingCell() {

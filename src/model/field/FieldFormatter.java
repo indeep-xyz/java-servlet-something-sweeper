@@ -9,7 +9,7 @@ import controller.tool.ParameterAgent;
  * @author indeep-xyz
  *
  */
-public class FieldFormatter {
+class FieldFormatter {
 
 	/**
 	 * 横幅。
