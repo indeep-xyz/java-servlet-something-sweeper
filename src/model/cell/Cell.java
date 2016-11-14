@@ -1,14 +1,11 @@
 package model.cell;
 
-import java.io.Serializable;
-
 /**
  * セルデータ
  * @author indeep-xyz
  *
  */
-public abstract class Cell
-		implements Serializable {
+public abstract class Cell {
 
 	/**
 	 * 周囲にある Something の数。負数で未判定

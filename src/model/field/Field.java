@@ -14,6 +14,11 @@ public class Field
 		implements Serializable {
 	
 	/**
+	 * シリアルバージョン ID 。
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * 横幅。
 	 */
 	private int width;
