@@ -7,7 +7,7 @@ import model.cell.Cell;
  * @author indeep-xyz
  *
  */
-class FieldSurveillant {
+public class FieldSurveillant {
 
 	/**
 	 * 領域データ。
