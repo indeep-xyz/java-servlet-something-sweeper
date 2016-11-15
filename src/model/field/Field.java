@@ -167,6 +167,38 @@ public class Field
 		
 		return this.cells[id];
 	}
+
+	/**
+	 * 指定座標のセルの HTML 文を返す。
+	 * @param x セルの x 座標
+	 * @param y セルの y 座標
+	 * @return セルの HTML 文
+	 */
+	public String getCellHtml(int x, int y) {
+		Cell cell = getCell(x, y);
+		
+		if (cell == null){
+			return "";
+		}
+		
+		return cell.getHtml();
+	}
+
+	/**
+	 * 指定座標のセルの HTML 文を返す。
+	 * @param x セルの x 座標
+	 * @param y セルの y 座標
+	 * @return セルの HTML 文
+	 */
+	public String getCellHtmlInGame(int x, int y) {
+		Cell cell = getCell(x, y);
+		
+		if (cell == null){
+			return "";
+		}
+		
+		return cell.getHtmlInGame(getCellId(x, y));
+	}
 	
 	/**
 	 * 指定 ID のセルの座標を返す。

@@ -11,11 +11,9 @@ int height = field.getHeight();
     <% for(int y = 0; y < height; y++) { %>
     <div class="row">
         <% for(int x = 0; x < width; x++) {
-            int index = y * width + x;
-            Cell cell = field.getCell(index);
             %>
         <div class="col">
-            <%= cell.getHtml() %>
+            <%= field.getCellHtml(x, y) %>
         </div>
         <% } %>
     </div>

@@ -12,11 +12,9 @@ int height = field.getHeight();
 	    <% for(int y = 0; y < height; y++) { %>
 	    <ul class="row">
 	        <% for(int x = 0; x < width; x++) {
-	            int index = y * width + x;
-	            Cell cell = field.getCell(index);
 	            %>
 	        <li class="col">
-                <%= cell.getHtmlInGame(index) %>
+                <%= field.getCellHtmlInGame(x, y) %>
 	        </li>
 	        <% } %>
 	    </ul>
