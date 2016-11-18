@@ -1,8 +1,9 @@
+<%@page import="model.field.IFieldJsp"%>
 <%@page import="model.field.Field"%>
 <%@page import="model.cell.Cell"%>
 <%@page import="controller.game.GameMaster"%>
 <%
-Field field = (Field) session.getAttribute(GameMaster.SESSION_FIELD_DATA);
+IFieldJsp field = (Field) session.getAttribute("field");
 int width = field.getWidth();
 int height = field.getHeight();
 %>

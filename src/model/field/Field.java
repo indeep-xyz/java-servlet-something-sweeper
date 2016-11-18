@@ -11,7 +11,7 @@ import model.cell.CellCreator;
  *
  */
 public class Field
-		implements Serializable {
+		implements Serializable, IFieldJsp {
 	
 	/**
 	 * シリアルバージョン ID 。
@@ -103,7 +103,6 @@ public class Field
 
 	/**
 	 * 横幅を設定する。
-	 * 
 	 * @param width 横幅
 	 */
 	public void setWidth(int width) {
@@ -185,7 +184,7 @@ public class Field
 	}
 
 	/**
-	 * 指定座標のセルの HTML 文を返す。
+	 * 指定座標のセルの、ゲーム状況に沿った HTML 文を返す。
 	 * @param x セルの x 座標
 	 * @param y セルの y 座標
 	 * @return セルの HTML 文
