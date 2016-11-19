@@ -71,10 +71,10 @@ public class Field
 	 * 領域データをセットする。
 	 * シリアライズ用。
 	 * 
-	 * @param field 領域データ
+	 * @param cells 領域データ
 	 */
-	public void setTable(Cell[] field) {
-		this.cells = field;
+	public void setCells(Cell[] cells) {
+		this.cells = cells;
 	}
 
 	/**
@@ -168,6 +168,33 @@ public class Field
 	}
 
 	/**
+	 * 指定 ID のセルの座標を返す。
+	 * @param id セルの ID
+	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null
+	 */
+	public int[] getCellCoordinates(int id) {
+		if (getCell(id) != null) {
+			return new int[]{id % this.width, id / this.width};
+		}
+		
+		return null;
+	}
+
+	/**
+	 * 指定座標のセルの ID を返す。
+	 * @param x 座標
+	 * @param y 座標
+	 * @return セルの ID。範囲外の場合は -1
+	 */
+	public int getCellId(int x, int y) {
+		if (x < 0 || this.width <= x || y < 0 || this.height <= y){
+			return -1;
+		}
+		
+		return x + y * this.getWidth();
+	}
+
+	/**
 	 * 指定座標のセルの HTML 文を返す。
 	 * @param x セルの x 座標
 	 * @param y セルの y 座標
@@ -199,33 +226,6 @@ public class Field
 		return cell.getHtmlInGame(getCellId(x, y));
 	}
 	
-	/**
-	 * 指定 ID のセルの座標を返す。
-	 * @param id セルの ID
-	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null
-	 */
-	public int[] getCellCoordinates(int id) {
-		if (getCell(id) != null) {
-			return new int[]{id % this.width, id / this.width};
-		}
-		
-		return null;
-	}
-
-	/**
-	 * 指定座標のセルの ID を返す。
-	 * @param x 座標
-	 * @param y 座標
-	 * @return セルの ID。範囲外の場合は -1
-	 */
-	public int getCellId(int x, int y) {
-		if (x < 0 || this.width <= x || y < 0 || this.height <= y){
-			return -1;
-		}
-		
-		return x + y * this.getWidth();
-	}
-
 	/**
 	 * 未知の Something セルの個数を数えて返す。
 	 * @return 未知の Something セルの個数
