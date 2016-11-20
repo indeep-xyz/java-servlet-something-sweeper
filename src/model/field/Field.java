@@ -168,6 +168,15 @@ public class Field
 	}
 
 	/**
+	 * 指定の要素番号にセルを設定する。
+	 * @param index 要素番号
+	 * @param cell セル
+	 */
+	public void setCell(int index, Cell cell) {
+		this.cells[index] = cell;
+	}
+
+	/**
 	 * 指定 ID のセルの座標を返す。
 	 * @param id セルの ID
 	 * @return セルが存在する場合は座標 ([0]: x, [1] : y) を、存在しない場合は null

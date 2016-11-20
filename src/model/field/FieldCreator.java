@@ -3,6 +3,8 @@ package model.field;
 import javax.servlet.http.HttpServletRequest;
 
 import controller.tool.ParameterAgent;
+import model.cell.Cell;
+import model.cell.CellPot;
 
 /**
  * 領域データの作成・初期化を担当する。
@@ -58,25 +60,26 @@ public class FieldCreator {
 	 * 表データを新規作成する。
 	 */
 	public Field create() {
-		return createNiceField();
-	}
-	
-	/**
-	 * Something をある程度保持する領域データを作成する。
-	 * @return 領域データ
-	 */
-	public Field createNiceField() {
-		Field field = null;
-		int limit = 20;
+		Field field = new Field(this.width, this.height, this.difficulty);
+		CellPot pot = createCellPot();
+		int index = 0;
 		
-		while (limit-- > 0) {
-			field = new Field(this.width, this.height, this.difficulty);
-			
-			if (field.countSomethingUnknownCells() > this.difficulty + 1) {
-				break;
-			}
+		while (pot.hasNext()) {
+			Cell cell = pot.pickRandomOne();
+			field.setCell(index++, cell);
 		}
 		
 		return field;
+	}
+	
+	/**
+	 * CellPot インスタンスの作成。
+	 * @return CellPot インスタンス
+	 */
+	private CellPot createCellPot(){
+		int cellLength = this.width * this.height;
+		int somethingAmount = (int)Math.ceil((double)cellLength / 10 * this.difficulty);
+		
+		return new CellPot(cellLength, somethingAmount);
 	}
 }
