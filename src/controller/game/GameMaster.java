@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import model.field.Field;
-import model.field.FieldFormatter;
+import model.field.FieldCreator;
 import model.field.FieldSurveillant;
 
 /**
@@ -48,7 +48,7 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean isFieldFormattable() {
-		FieldFormatter formatter = new FieldFormatter(this.request);
+		FieldCreator formatter = new FieldCreator(this.request);
 		return formatter.isFormattable();
 	}
 	
@@ -59,7 +59,7 @@ public class GameMaster {
 	 * @throws ServletException 
 	 */
 	public void formatField() throws ServletException, IOException {
-		FieldFormatter formatter = new FieldFormatter(this.request);
+		FieldCreator formatter = new FieldCreator(this.request);
 		Field field = formatter.create();
 		FieldSurveillant surveillant = new FieldSurveillant(field);
 		surveillant.surveyAll();

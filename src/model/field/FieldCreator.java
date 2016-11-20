@@ -5,11 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import controller.tool.ParameterAgent;
 
 /**
- * 領域データの初期化や作成を担当する。
+ * 領域データの作成・初期化を担当する。
  * @author indeep-xyz
  *
  */
-public class FieldFormatter {
+public class FieldCreator {
 
 	/**
 	 * 横幅。
@@ -30,7 +30,7 @@ public class FieldFormatter {
 	 * コンストラクタ。
 	 * @param request リクエスト
 	 */
-	public FieldFormatter(HttpServletRequest request) {
+	public FieldCreator(HttpServletRequest request) {
 		initializeByRequestParameter(request);
 	}
 

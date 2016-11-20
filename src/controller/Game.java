@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.game.GameMaster;
 import controller.tool.ParameterAgent;
-import model.field.FieldFormatter;
+import model.field.FieldCreator;
 
 /**
  * ゲーム画面の表示をおこなうサーブレット。
