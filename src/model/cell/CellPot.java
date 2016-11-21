@@ -64,18 +64,9 @@ public class CellPot {
 	 * @return Stock フィールド内の指定要素の値
 	 */
 	private Cell pickOne(int index) {
-		boolean[] newStock = new boolean[this.stock.length - 1];
 		boolean cellFactor = this.stock[index];
 
-		for (int i = 0; i < index; i++) {
-			newStock[i] = this.stock[i];
-		}
-
-		for (int i = index + 1; i < stock.length; i++) {
-			newStock[i - 1] = this.stock[i];
-		}
-		
-		this.stock = newStock;
+		removeOne(index);
 		return createCell(cellFactor);
 	}
 	
@@ -88,5 +79,23 @@ public class CellPot {
 		return (b)
 				? new SomethingCell()
 				: new PlainCell();
+	}
+	
+	/**
+	 * Stock フィールドの指定要素を取り除く。
+	 * @param index Stock フィールドの要素番号
+	 */
+	private void removeOne(int index){
+		boolean[] newStock = new boolean[this.stock.length - 1];
+		
+		for (int i = 0; i < index; i++) {
+			newStock[i] = this.stock[i];
+		}
+
+		for (int i = index + 1; i < stock.length; i++) {
+			newStock[i - 1] = this.stock[i];
+		}
+
+		this.stock = newStock;
 	}
 }
