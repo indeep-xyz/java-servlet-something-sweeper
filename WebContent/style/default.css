@@ -144,19 +144,13 @@ header h1 {
 	position: relative;
 }
 
-/* #result #message { */
-/* 	z-index: -1; */
-	
-/* 	position: absolute; */
-/* 	top: 0; */
-/* } */
+#result #message {
+    position: absolute;
+    top: 0;
+	z-index: -1;
+}
 
-/* #result #field { */
-/* 	z-index: 0; */
-/* 	position: absolute; */
-/* 	top: 0; */
-/*     left: 50%; */
-/*     right: 0; */
-/*     margin: auto; */
-	
-/* } */
+#result #field {
+	z-index: 0;
+    margin: 0 auto;
+}
