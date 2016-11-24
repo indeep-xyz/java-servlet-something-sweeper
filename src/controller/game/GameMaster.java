@@ -11,7 +11,7 @@ import model.field.FieldCreator;
 import model.field.FieldSurveillant;
 
 /**
- * ゲーム本編の制御用クラス
+ * ゲーム本編の制御用クラス。
  * @author indeep-xyz
  *
  */
