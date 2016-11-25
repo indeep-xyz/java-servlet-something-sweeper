@@ -13,7 +13,7 @@
     <h1>Something Sweeper</h1>
 </header>
 
-<jsp:include page="part/field-in-game.jsp"></jsp:include>
+<jsp:include page="part/FieldInGame.jsp"></jsp:include>
 
 </body>
 </html>

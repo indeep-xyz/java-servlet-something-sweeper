@@ -20,7 +20,7 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 
 <h2>SUCCEEDED</h2>
 
-<jsp:include page="part/retry-form.jsp"></jsp:include>
+<jsp:include page="part/RetryForm.jsp"></jsp:include>
 
 <div id="result">
 	<div id="message">
@@ -38,7 +38,7 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 		<% } %>
 	</div>
 	
-    <jsp:include page="part/field-uncovered.jsp"></jsp:include>
+    <jsp:include page="part/FieldUncovered.jsp"></jsp:include>
 </div>
 
 </body>

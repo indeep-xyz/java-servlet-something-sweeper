@@ -15,8 +15,8 @@
 
 <h2>FAILED</h2>
 
-<jsp:include page="part/retry-form.jsp"></jsp:include>
-<jsp:include page="part/field-uncovered.jsp"></jsp:include>
+<jsp:include page="part/RetryForm.jsp"></jsp:include>
+<jsp:include page="part/FieldUncovered.jsp"></jsp:include>
 
 </body>
 </html>
