@@ -373,4 +373,37 @@ public class Field
 				getCellId(coord[0] + 1, coord[1] + 1)
 		};
 	}
+	
+	/**
+	 * ゲーム進行状況のパラメータを JSON に変換して返す。
+	 * 未開放状態のセルの内部状態は隠される。
+	 * @return JSON 文字列
+	 */
+	public String toJsonInGame(){
+		StringBuilder data = new StringBuilder("{");
+
+		data.append("\"width\":" + this.width);
+		data.append(",\"height\":" + this.height);
+		data.append(",\"difficulty\":" + this.difficulty);
+		data.append(",\"cells\":[");
+		
+		for (int i = 0; i < cells.length; i++) {
+			Cell cell = this.cells[i];
+			int around = (cell.isOpen()) ? cell.getAroundSomething() : -1;
+
+			if (i > 0) {
+				data.append(",");
+			}
+			
+			data.append("{");
+			data.append("\"aroundSomething\":" + around);
+			data.append(",\"isSomething\":" + cell.isSomething());
+			data.append("}");
+		}
+		
+		data.append("]");
+		data.append("}");
+		
+		return data.toString();
+	}
 }
