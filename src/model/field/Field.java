@@ -376,7 +376,21 @@ public class Field
 	
 	/**
 	 * ゲーム進行状況のパラメータを JSON に変換して返す。
-	 * 未開放状態のセルの内部状態は隠される。
+	 * 未開放セルの内部状態は隠される。
+	 * 
+	 * {
+	 *   width: width,
+	 *   height: height,
+	 *   difficulty: difficulty,
+	 *   cells: [
+	 *     {
+	 *       aroundSomething: the number of something cells around one when it is opened, -1 when it is not opened
+	 *       isSomething: isSomething()
+	 *     },
+	 *     ...
+	 *   ]
+	 * }
+	 * 
 	 * @return JSON 文字列
 	 */
 	public String toJsonInGame(){
