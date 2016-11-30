@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>Something Sweeper (main)</title>
 <link rel="stylesheet" href="style/default.css" />
+
+<script src="script/Game/main.js"></script>
+<script src="script/Game/cell-opener.js"></script>
 </head>
 <body>
 
