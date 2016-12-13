@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import controller.game.GameMaster;
 
 /**
- * コンフィグ画面の表示をおこなうサーブレット。
+ * コンフィグ設定画面の表示をおこなうサーブレット。
  * @author indeep-xyz
  */
 @WebServlet("/Config")
@@ -21,7 +21,7 @@ public class Config extends HttpServlet {
        
 	/**
 	 * GET でのアクセス。
-	 * 一切のパラメータを扱わずに、コンフィグ画面を出力する。
+	 * パラメータを渡されても取り扱わずにコンフィグ設定画面を表示する。
 	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -31,8 +31,8 @@ public class Config extends HttpServlet {
 
 	/**
 	 * POST でのアクセス。
-	 * 正しいパラメータがあればそれを元にゲームの場を生成し、ゲーム画面へと移動する。
-	 * パラメータがなければコンフィグ画面を出力する。
+	 * 正しいパラメータを渡されている場合はその情報を元にゲームの状態を生成し、ゲーム画面へと移行する。
+	 * パラメータが不適当、またはない場合はコンフィグ設定画面を表示する。
 	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -49,7 +49,7 @@ public class Config extends HttpServlet {
 	}
 
 	/**
-	 * コンフィグ画面の表示。
+	 * コンフィグ設定画面の表示。
 	 * 
 	 * @param request リクエスト
 	 * @param response レスポンス
@@ -62,7 +62,7 @@ public class Config extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム画面へのリダイレクト。
+	 * ゲーム画面にリダイレクトする。
 	 * 
 	 * @param response レスポンス
 	 * @throws IOException
