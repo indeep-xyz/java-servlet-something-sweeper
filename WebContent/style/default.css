@@ -93,7 +93,7 @@ header h1 {
 	display: table-row;
 }
 
-#field .col {
+#field .cell {
 	display: table-cell;
 	width: 60px;
 	height: 60px;
@@ -103,21 +103,19 @@ header h1 {
 	list-style-type: none;
 }
 
-#field .col>.opened {
-	width: 100%;
-	height: 100%;
+#field .cell>opened {
 	line-height: 40px;
 	font-size: 20px;
 	overflow: hidden;
 }
 
-#field .col>.opened.plain {
+#field .cell>opened.plain {
 	line-height: 60px;
 	font-size: 20px;
 	background-color: #e0e0e0;
 }
 
-#field .col>.opened.something {
+#field .cell>opened.something {
 	background-color: #f00000; 
 }
 
