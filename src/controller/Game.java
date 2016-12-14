@@ -24,7 +24,7 @@ public class Game extends HttpServlet {
 
 	/**
 	 * GET によるアクセス。
-	 * 読み込み可能なゲーム状態があればそれを表示し、なければコンフィグ画面へ移動する。
+	 * 読み込み可能なゲーム状態があればそれを表示し、なければコンフィグ設定画面へ移動する。
 	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -42,7 +42,7 @@ public class Game extends HttpServlet {
 	/**
 	 * POST によるアクセス。
 	 * 読み込み可能なゲーム状態があれば受け取った値と状況によって処理と画面表示をおこなう。
-	 * なければコンフィグ画面へ移動する。
+	 * なければコンフィグ設定画面へ移動する。
 	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -119,7 +119,7 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * コンフィグ画面へのリダイレクト。
+	 * コンフィグ設定画面へのリダイレクト。
 	 * 
 	 * @param response レスポンス
 	 * @throws IOException
