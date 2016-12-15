@@ -73,10 +73,10 @@ public class Game extends HttpServlet {
 		master.openCell(id);
 		
 		if (master.isFailed(id)){
-			dispatchGameFailed(request, response);
+			redirectToGameFailed(response);
 		}
 		else if (master.isCompleted()) {
-			dispatchGameSucceeded(request, response);
+			redirectToSucceeded(response);
 		}
 		else {
 			dispatchGame(request, response);
@@ -96,26 +96,23 @@ public class Game extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム失敗画面を表示する。
+	 * ゲーム失敗画面へのリダイレクト。
 	 * 
-	 * @param master 
-	 * @throws ServletException
+	 * @param response レスポンス
 	 * @throws IOException
 	 */
-	private void dispatchGameFailed(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameFailed.jsp");
-		dispatcher.forward(request, response);
+	private void redirectToGameFailed(HttpServletResponse response) throws IOException {
+		response.sendRedirect("GameFailed");
 	}
 
 	/**
-	 * ゲーム成功画面を表示する。
+	 * ゲーム成功画面へのリダイレクト。
 	 * 
-	 * @throws ServletException
+	 * @param response レスポンス
 	 * @throws IOException
 	 */
-	private void dispatchGameSucceeded(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/GameSucceeded.jsp");
-		dispatcher.forward(request, response);
+	private void redirectToSucceeded(HttpServletResponse response) throws IOException {
+		response.sendRedirect("GameSucceeded");
 	}
 
 	/**

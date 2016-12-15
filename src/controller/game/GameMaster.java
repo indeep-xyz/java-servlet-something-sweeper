@@ -33,6 +33,11 @@ public class GameMaster {
 	private Field field;
 
 	/**
+	 * ゲームが進行可能か否か。
+	 */
+	private boolean isEndGame = false;
+
+	/**
 	 * コンストラクタ
 	 * @param request リクエスト用のオブジェクト
 	 * @param response レスポンス用のオブジェクト
@@ -117,6 +122,21 @@ public class GameMaster {
 	public void openCell(int id) throws ServletException, IOException {
 		this.field.openCell(id);
 		saveGameData();
+	}
+
+	/**
+	 * ゲームが進行不可能な状態に設定する。
+	 */
+	public void endGame() {
+		this.isEndGame = true;
+	}
+
+	/**
+	 * ゲームが進行可能か否かを返す。
+	 * @return 進行可能な場合は true
+	 */
+	public boolean isEndGame() {
+		return this.isEndGame;
 	}
 
 }
