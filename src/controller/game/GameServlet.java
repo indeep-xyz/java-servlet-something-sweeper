@@ -1,4 +1,4 @@
-package controller;
+package controller.game;
 
 import java.io.IOException;
 
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import controller.game.GameMaster;
 import controller.tool.ParameterAgent;
 import model.field.FieldCreator;
 
@@ -19,7 +18,7 @@ import model.field.FieldCreator;
  * @author indeep-xyz
  */
 @WebServlet("/Game")
-public class Game extends HttpServlet {
+public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**

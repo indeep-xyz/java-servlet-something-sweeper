@@ -1,4 +1,4 @@
-package controller;
+package controller.game.data;
 
 import java.io.IOException;
 
@@ -19,7 +19,7 @@ import model.field.FieldCreator;
  * @author indeep-xyz
  */
 @WebServlet("/FieldData")
-public class FieldData extends HttpServlet {
+public class FieldDataServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
