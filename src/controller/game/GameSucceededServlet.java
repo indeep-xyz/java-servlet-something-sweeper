@@ -14,7 +14,7 @@ import controller.tool.ParameterAgent;
 import model.field.FieldCreator;
 
 /**
- * ゲーム失敗時の画面の表示をおこなうサーブレット。
+ * ゲーム成功時の画面の表示をおこなうサーブレット。
  * @author indeep-xyz
  */
 @WebServlet("/GameSucceeded")
@@ -23,7 +23,7 @@ public class GameSucceededServlet extends HttpServlet {
 
 	/**
 	 * GET によるアクセス。
-	 * 読み込み可能なゲーム状態があれば、進行不可能にして失敗画面を表示する。
+	 * 読み込み可能なゲーム状態があれば、進行不可能にして成功画面を表示する。
 	 * なければコンフィグ設定画面へ移動する。
 	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +41,7 @@ public class GameSucceededServlet extends HttpServlet {
 	}
 
 	/**
-	 * ゲーム失敗画面を表示する。
+	 * ゲーム成功画面を表示する。
 	 * 
 	 * @param master 
 	 * @throws ServletException
