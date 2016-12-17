@@ -87,50 +87,36 @@ header h1 {
 	display: table;
 	margin: auto;
 	border-collapse: collapse;
+    font-size: 20px;
 }
 
 #field .row {
 	display: table-row;
+    height: 60px;
+    overflow: hidden;
 }
 
 #field .cell {
 	display: table-cell;
 	width: 60px;
-	height: 60px;
 	vertical-align: middle;
 	border: 1px solid #000000;
-	overflow: hidden;
-	list-style-type: none;
 }
 
-#field .cell>opened {
-	line-height: 40px;
-	font-size: 20px;
-	overflow: hidden;
-}
-
-#field .cell>opened.plain {
-	line-height: 60px;
-	font-size: 20px;
+#field .cell.opened.plain {
 	background-color: #e0e0e0;
 }
 
-#field .cell>opened.something {
-	background-color: #f00000; 
+#field .cell.opened.something {
+	background-color: #f00000;
 }
 
-
-#field .clickable {
-	width: 100%;
-	height: 100%;
+#field .cell.clickable {
 	background-color: #ffffff;
-	color: #ffffff;
-	border: none;
 }
 
-#field .clickable:hover {
-    background-color: #f0f0f0; 
-    color: #f0f0f0; 
+#field .cell.clickable:hover {
+    background-color: #f0f0f0;
 }
 
 /**

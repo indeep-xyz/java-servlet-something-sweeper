@@ -234,7 +234,25 @@ public class Field
 		
 		return cell.getHtmlInGame(getCellId(x, y));
 	}
-	
+
+	/**
+	 * 発見済みの Something セルの個数を数えて返す。
+	 * @return 発見済みの Something セルの個数
+	 */
+	public int countSomethingOpenedCells() {
+		int count = 0;
+		
+		for (int i = 0; i < this.cells.length; i++) {
+			Cell cell = this.cells[i];
+			
+			if (cell.isOpen() && cell.isSomething()){
+				count++;
+			}
+		}
+
+		return count;
+	}
+
 	/**
 	 * 未知の Something セルの個数を数えて返す。
 	 * @return 未知の Something セルの個数
@@ -277,6 +295,14 @@ public class Field
 		}
 		
 		return count;
+	}
+
+	/**
+	 * 全ての無地セルが開かれているか否か。
+	 * @return 全ての無地セルが開かれていれば true
+	 */
+	public boolean isPlainAllOpen(){
+		return (countUnknownSafetyCells() < 1);
 	}
 
 	/**
@@ -379,13 +405,17 @@ public class Field
 	 * 未開放セルの内部状態は隠される。
 	 * 
 	 * {
-	 *   width: width,
-	 *   height: height,
-	 *   difficulty: difficulty,
+	 *   width: Width of the field.
+	 *   height: Height of the field.
+	 *   difficulty: Difficulty in the current game.
+	 *   isCompleted: All the plain cells opened or not.
+	 *   countSomethingOpened: Number of opened something cells
 	 *   cells: [
 	 *     {
-	 *       aroundSomething: the number of something cells around one when it is opened, -1 when it is not opened
-	 *       isSomething: isSomething()
+	 *       index: An index of a cell in the field.
+	 *       isOpen: A cell is opened or not.
+	 *       aroundSomething: The number of something cells around one. Require the cell opened.
+	 *       isSomething: A something cell or not.
 	 *     },
 	 *     ...
 	 *   ]
@@ -399,6 +429,8 @@ public class Field
 		data.append("\"width\":" + this.width);
 		data.append(",\"height\":" + this.height);
 		data.append(",\"difficulty\":" + this.difficulty);
+		data.append(",\"isCompleted\":" + isPlainAllOpen());
+		data.append(",\"countSomethingOpened\":" + countSomethingOpenedCells());
 		data.append(",\"cells\":[");
 		
 		for (int i = 0; i < cells.length; i++) {
@@ -410,8 +442,14 @@ public class Field
 			}
 			
 			data.append("{");
-			data.append("\"aroundSomething\":" + around);
-			data.append(",\"isSomething\":" + cell.isSomething());
+			data.append("\"index\":" + i);
+			data.append(",\"isOpen\":" + cell.isOpen());
+			
+			if (cell.isOpen()) {
+				data.append(",\"aroundSomething\":" + around);
+				data.append(",\"isSomething\":" + cell.isSomething());
+			}
+			
 			data.append("}");
 		}
 		
