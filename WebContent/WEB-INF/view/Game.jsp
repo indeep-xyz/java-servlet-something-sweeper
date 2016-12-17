@@ -7,9 +7,9 @@
 <title>Something Sweeper (main)</title>
 <link rel="stylesheet" href="style/default.css" />
 
-<script src="script/Game/main.js"></script>
-<script src="script/Game/field-manager.js"></script>
-<script src="script/Game/cell.js"></script>
+<script type="text/javascript" src="script/Game/main.js"></script>
+<script type="text/javascript" src="script/Game/field-manager.js"></script>
+<script type="text/javascript" src="script/Game/cell.js"></script>
 </head>
 <body>
 
