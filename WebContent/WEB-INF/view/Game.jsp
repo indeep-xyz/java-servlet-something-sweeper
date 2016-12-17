@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="style/default.css" />
 
 <script src="script/Game/main.js"></script>
-<script src="script/Game/cell-opener.js"></script>
+<script src="script/Game/field-manager.js"></script>
+<script src="script/Game/cell.js"></script>
 </head>
 <body>
 
@@ -16,7 +17,10 @@
     <h1>Something Sweeper</h1>
 </header>
 
-<jsp:include page="part/FieldInGame.jsp"></jsp:include>
+<form action="Game" method="post">
+    <section id="field">
+    </section>
+</form>
 
 </body>
 </html>
