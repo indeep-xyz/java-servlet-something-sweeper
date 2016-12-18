@@ -458,4 +458,60 @@ public class Field
 		
 		return data.toString();
 	}
+
+	/**
+	 * ゲームの全てのパラメータを JSON に変換して返す。
+	 * 未開放セルの内部状態を隠さない。
+	 * 
+	 * {
+	 *   width: Width of the field.
+	 *   height: Height of the field.
+	 *   difficulty: Difficulty in the current game.
+	 *   isCompleted: All the plain cells opened or not.
+	 *   countSomethingOpened: Number of opened something cells
+	 *   cells: [
+	 *     {
+	 *       index: An index of a cell in the field.
+	 *       isOpen: A cell is opened or not.
+	 *       aroundSomething: The number of something cells around one. Require the cell opened.
+	 *       isSomething: A something cell or not.
+	 *     },
+	 *     ...
+	 *   ]
+	 * }
+	 * 
+	 * @return JSON 文字列
+	 */
+	public String toJsonResult() {
+		StringBuilder data = new StringBuilder("{");
+
+		data.append("\"width\":" + this.width);
+		data.append(",\"height\":" + this.height);
+		data.append(",\"difficulty\":" + this.difficulty);
+		data.append(",\"isCompleted\":" + isPlainAllOpen());
+		data.append(",\"countSomethingOpened\":" + countSomethingOpenedCells());
+		data.append(",\"cells\":[");
+		
+		for (int i = 0; i < cells.length; i++) {
+			Cell cell = this.cells[i];
+			int around = cell.getAroundSomething();
+
+			if (i > 0) {
+				data.append(",");
+			}
+			
+			data.append("{");
+			data.append("\"index\":" + i);
+			data.append(",\"isOpen\":" + true);
+			data.append(",\"aroundSomething\":" + around);
+			data.append(",\"isSomething\":" + cell.isSomething());
+			
+			data.append("}");
+		}
+		
+		data.append("]");
+		data.append("}");
+		
+		return data.toString();
+	}
 }

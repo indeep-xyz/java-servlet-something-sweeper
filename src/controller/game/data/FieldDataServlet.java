@@ -1,6 +1,7 @@
 package controller.game.data;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.game.GameMaster;
 import controller.tool.ParameterAgent;
+import model.field.Field;
 import model.field.FieldCreator;
 
 /**
@@ -30,11 +32,32 @@ public class FieldDataServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String resultMode = request.getParameter("result");
 		GameMaster master = new GameMaster(request);
-		
+
 		if (master.loadGameData()) {
-			dispatchJsonInGame(master, request, response);
+			if (resultMode != null
+					&& master.isGameEnd()
+					){
+				printJsonResult(request, response);
+			}
+			else {
+				dispatchJsonInGame(master, request, response);
+			}
 		}
+	}
+
+	/**
+	 * 結果用の JSON を出力する。
+	 * @param response レスポンス
+	 * @throws IOException 
+	 */
+	private void printJsonResult(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    response.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    Field field = (Field) request.getSession().getAttribute("field");
+	    
+	    out.println(field.toJsonResult());
 	}
 
 	/**

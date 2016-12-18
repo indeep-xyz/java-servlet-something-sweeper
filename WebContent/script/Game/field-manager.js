@@ -4,9 +4,11 @@
  * @class
  * @constructor
  * @param {string} fieldId - An ID of a HTML element to attach the field
+ * @param {boolean} resultMode - Get field data all when this is true
  */
-var FieldManager = function(fieldId){
+var FieldManager = function(fieldId, resultMode){
 	this.fieldId = fieldId;
+	this.resultMode = !!resultMode;
 };
 
 /**
@@ -43,6 +45,16 @@ FieldManager.URL_GAME_SUCCEEDED = 'GameSucceeded';
  * @var {String}
  */
 FieldManager.prototype.fieldId = '';
+
+/**
+ * Loading field data,
+ * the data has all parameters when this value is true,
+ * or the data is limited when this value is false.
+ *
+ * @public
+ * @var {String}
+ */
+FieldManager.prototype.resultMode = false;
 
 /**
  * Load field data and it puts into the view.
@@ -86,6 +98,21 @@ FieldManager.prototype.loadField = function(cellIndex) {
 	}
 
 	/**
+	 * Load field data all from a server.
+	 *
+	 * @private
+	 * @method
+	 */
+	function loadResult() {
+		var req = new XMLHttpRequest();
+
+		req.addEventListener('load', callback);
+		req.open('GET', FieldManager.URL_FIELD_DATA + '?result=1');
+
+		req.send();
+	}
+
+	/**
 	 * Open a cell and load field data from a server.
 	 *
 	 * @private
@@ -113,23 +140,32 @@ FieldManager.prototype.loadField = function(cellIndex) {
 	function callback() {
 		if (this.status === 200) {
 			var result = JSON.parse(this.responseText);
+			var location;
 
 			if (result.isCompleted) {
-				window.location = FieldManager.URL_GAME_SUCCEEDED;
+				location = FieldManager.URL_GAME_SUCCEEDED;
 			}
 			else if (0 < result.countSomethingOpened) {
-				window.location = FieldManager.URL_GAME_FAILED;
+				location = FieldManager.URL_GAME_FAILED;
+			}
+
+			if (!self.resultMode && typeof location === 'string') {
+				window.location = location;
 			}
 			else {
 				self.updateFieldView(result);
 			}
+
 		}
 	}
 
 	// - - - - - - - - - - - - - - - -
 	// main - in FieldManager.prototype.loadField
 
-	if (typeof cellIndex === 'undefined') {
+	if (self.resultMode) {
+		loadResult();
+	}
+	else if (typeof cellIndex === 'undefined') {
 		load();
 	}
 	else {

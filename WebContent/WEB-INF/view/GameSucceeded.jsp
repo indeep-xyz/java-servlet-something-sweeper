@@ -11,6 +11,10 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 <meta charset="UTF-8">
 <title>Something Sweeper (Succeeded)</title>
 <link rel="stylesheet" href="style/default.css" />
+
+<script type="text/javascript" src="script/Game/game-result.js"></script>
+<script type="text/javascript" src="script/Game/field-manager.js"></script>
+<script type="text/javascript" src="script/Game/cell.js"></script>
 </head>
 <body>
 
@@ -31,14 +35,14 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 			<% for(int j = 0; j < 16; j++) {
 				String color = colors[rand.nextInt(colors.length)];
 				%>
-				
-				<span style="color: <%= color %>">Yeah!</span> 
+
+				<span style="color: <%= color %>">Yeah!</span>
 			<% } %>
 			</marquee>
 		<% } %>
 	</div>
-	
-    <jsp:include page="part/FieldUncovered.jsp"></jsp:include>
+
+	<section id="field"></section>
 </div>
 
 </body>
