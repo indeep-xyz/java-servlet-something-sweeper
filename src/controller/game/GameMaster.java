@@ -21,6 +21,11 @@ public class GameMaster {
 	 * フィールド状況を記録するためのセッション名。
 	 */
 	public static String SESSION_FIELD_DATA = "field";
+
+	/**
+	 * ゲームが進行可能か否かを記録するためのセッション名。
+	 */
+	public static String SESSION_GAME_END_FLAG = "isGameEnd";
 	
 	/**
 	 * リクエスト用のオブジェクト
@@ -35,7 +40,7 @@ public class GameMaster {
 	/**
 	 * ゲームが進行可能か否か。
 	 */
-	private boolean isEndGame = false;
+	private boolean isGameEnd;
 
 	/**
 	 * コンストラクタ
@@ -44,6 +49,7 @@ public class GameMaster {
 	 */
 	public GameMaster(HttpServletRequest request) {
 		this.request = request;
+		this.isGameEnd = false;
 	}
 
 	/**
@@ -81,6 +87,7 @@ public class GameMaster {
 	private void saveGameData() throws ServletException, IOException {
 		HttpSession session = this.request.getSession();
 		session.setAttribute(SESSION_FIELD_DATA, this.field);
+		session.setAttribute(SESSION_GAME_END_FLAG, this.isGameEnd);
 	}
 
 	/**
@@ -92,6 +99,7 @@ public class GameMaster {
 	public boolean loadGameData() throws ServletException, IOException {
 		HttpSession session = this.request.getSession();
 		this.field = (Field) session.getAttribute(SESSION_FIELD_DATA);
+		this.isGameEnd = (boolean) session.getAttribute(SESSION_GAME_END_FLAG);
 		
 		return (this.field != null);
 	}
@@ -126,17 +134,20 @@ public class GameMaster {
 
 	/**
 	 * ゲームが進行不可能な状態に設定する。
+	 * @throws IOException 
+	 * @throws ServletException 
 	 */
-	public void endGame() {
-		this.isEndGame = true;
+	public void endGame() throws ServletException, IOException {
+		this.isGameEnd = true;
+		saveGameData();
 	}
 
 	/**
 	 * ゲームが進行可能か否かを返す。
 	 * @return 進行可能な場合は true
 	 */
-	public boolean isEndGame() {
-		return this.isEndGame;
+	public boolean isGameEnd() {
+		return this.isGameEnd;
 	}
 
 }
