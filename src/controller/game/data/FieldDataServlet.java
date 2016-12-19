@@ -39,25 +39,12 @@ public class FieldDataServlet extends HttpServlet {
 			if (resultMode != null
 					&& master.isGameEnd()
 					){
-				printJsonResult(request, response);
+				printJsonResult(master, response);
 			}
 			else {
-				printJsonInGame(request, response);
+				printJsonInGame(master, response);
 			}
 		}
-	}
-
-	/**
-	 * 結果用の JSON を出力する。
-	 * @param response レスポンス
-	 * @throws IOException 
-	 */
-	private void printJsonResult(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	    response.setContentType("text/html; charset=UTF-8");
-	    PrintWriter out = response.getWriter();
-	    Field field = (Field) request.getSession().getAttribute("field");
-	    
-	    out.println(field.toJsonResult());
 	}
 
 	/**
@@ -89,7 +76,19 @@ public class FieldDataServlet extends HttpServlet {
 		int id = paramGetter.getInt("clicked", -1);
 		
 		master.openCell(id);
-		printJsonInGame(request, response);
+		printJsonInGame(master, response);
+	}
+	
+	/**
+	 * 設定済みの PrintWriter インスタンスを作成して返す。 
+	 * 
+	 * @param response レスポンス
+	 * @return 設定済みの PrintWriter インスタンス
+	 * @throws IOException
+	 */
+	private PrintWriter createPrintWriter(HttpServletResponse response) throws IOException {
+	    response.setContentType("text/html; charset=UTF-8");
+	    return response.getWriter();
 	}
 	
 	/**
@@ -99,12 +98,25 @@ public class FieldDataServlet extends HttpServlet {
 	 * @param response レスポンス
 	 * @throws IOException
 	 */
-	private void printJsonInGame(HttpServletRequest request, HttpServletResponse response) throws IOException {
-	    response.setContentType("text/html; charset=UTF-8");
-	    PrintWriter out = response.getWriter();
-	    Field field = (Field) request.getSession().getAttribute("field");
+	private void printJsonInGame(GameMaster master, HttpServletResponse response) throws IOException {
+	    PrintWriter writer = createPrintWriter(response);
+	    String fieldJson = master.getFieldJsonInGame();
 	    
-	    out.println(field.toJsonInGame());
+	    writer.println(fieldJson);
+	}
+
+	/**
+	 * 結果用の JSON を出力する。
+	 * 
+	 * @param request リクエスト
+	 * @param response レスポンス
+	 * @throws IOException 
+	 */
+	private void printJsonResult(GameMaster master, HttpServletResponse response) throws IOException {
+	    PrintWriter writer = createPrintWriter(response);
+	    String fieldJson = master.getFieldJsonResult();
+	    
+	    writer.println(fieldJson);
 	}
 }
 

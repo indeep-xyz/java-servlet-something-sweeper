@@ -150,4 +150,26 @@ public class GameMaster {
 		return this.isGameEnd;
 	}
 
+	/**
+	 * フィールド内のパラメータを JSON に変換して返す。
+	 * 未開放セルの内部状態を隠す。
+	 * 
+	 * @see model.field.Field#toJsonInGame()
+	 * @return フィールドの情報を表す JSON 文字列
+	 */
+	public String getFieldJsonInGame() {
+		return this.field.toJsonInGame();
+	}
+
+	/**
+	 * フィールド内の全てのパラメータを JSON に変換して返す。
+	 * 未開放セルの内部状態を隠さない。
+	 * 
+	 * @see model.field.Field#toJsonResult()
+	 * @return フィールドの情報を表す JSON 文字列
+	 */
+	public String getFieldJsonResult() {
+		return this.field.toJsonResult();
+	}
+
 }
