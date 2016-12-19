@@ -11,7 +11,7 @@ import model.cell.CellCreator;
  *
  */
 public class Field
-		implements Serializable, IFieldJsp {
+		implements Serializable {
 	
 	/**
 	 * シリアルバージョン ID 。
@@ -201,38 +201,6 @@ public class Field
 		}
 		
 		return x + y * this.getWidth();
-	}
-
-	/**
-	 * 指定座標のセルの HTML 文を返す。
-	 * @param x セルの x 座標
-	 * @param y セルの y 座標
-	 * @return セルの HTML 文
-	 */
-	public String getCellHtml(int x, int y) {
-		Cell cell = getCell(x, y);
-		
-		if (cell == null){
-			return "";
-		}
-		
-		return cell.getHtml();
-	}
-
-	/**
-	 * 指定座標のセルの、ゲーム状況に沿った HTML 文を返す。
-	 * @param x セルの x 座標
-	 * @param y セルの y 座標
-	 * @return セルの HTML 文
-	 */
-	public String getCellHtmlInGame(int x, int y) {
-		Cell cell = getCell(x, y);
-		
-		if (cell == null){
-			return "";
-		}
-		
-		return cell.getHtmlInGame(getCellId(x, y));
 	}
 
 	/**
