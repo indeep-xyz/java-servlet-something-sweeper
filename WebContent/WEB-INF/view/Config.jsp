@@ -23,7 +23,7 @@
 				width:
 			</th>
 			<td>
-				<input type="text" name="width" value="5">
+				<input type="text" name="width" value="20">
 			</td>
 		</tr>
 		<tr>
@@ -31,7 +31,7 @@
 				height:
 			</th>
 			<td>
-				<input type="text" name="height" value="5">
+				<input type="text" name="height" value="20">
 			</td>
 		</tr>
         <tr>

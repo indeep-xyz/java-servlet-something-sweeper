@@ -78,7 +78,7 @@ public class FieldCreator {
 	 */
 	private CellPot createCellPot(){
 		int cellLength = this.width * this.height;
-		int somethingAmount = (int)Math.ceil((double)cellLength / 10 * this.difficulty);
+		int somethingAmount = (int)Math.ceil((double)cellLength / 20 * this.difficulty);
 		
 		return new CellPot(cellLength, somethingAmount);
 	}
