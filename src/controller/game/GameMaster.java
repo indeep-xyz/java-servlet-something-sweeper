@@ -97,11 +97,23 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public boolean loadGameData() throws ServletException, IOException {
-		HttpSession session = this.request.getSession();
-		this.field = (Field) session.getAttribute(SESSION_FIELD_DATA);
-		this.isGameEnd = (boolean) session.getAttribute(SESSION_GAME_END_FLAG);
+		boolean succeeded = false;
+		Field newField = null;
 		
-		return (this.field != null);
+		try {
+			HttpSession session = this.request.getSession();
+			newField = (Field) session.getAttribute(SESSION_FIELD_DATA);
+			this.isGameEnd = (boolean) session.getAttribute(SESSION_GAME_END_FLAG);
+		} catch (NullPointerException e) {
+			;
+		} finally {
+			if (newField != null) {
+				this.field = newField;
+				succeeded = true;
+			}
+		}
+		
+		return succeeded;
 	}
 
 	/**
