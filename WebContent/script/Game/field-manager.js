@@ -239,7 +239,9 @@ FieldManager.prototype.updateFieldView = function(fieldSource) {
 	 */
 	function replaceField(newField) {
 		var oldField = document.querySelector('#' + self.fieldId);
+
 		oldField.parentNode.replaceChild(newField, oldField);
+		oldField = null;
 	}
 
 	// - - - - - - - - - - - - - - - -
