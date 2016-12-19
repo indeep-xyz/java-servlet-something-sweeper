@@ -42,7 +42,7 @@ public class FieldDataServlet extends HttpServlet {
 				printJsonResult(request, response);
 			}
 			else {
-				dispatchJsonInGame(master, request, response);
+				printJsonInGame(request, response);
 			}
 		}
 	}
@@ -89,19 +89,22 @@ public class FieldDataServlet extends HttpServlet {
 		int id = paramGetter.getInt("clicked", -1);
 		
 		master.openCell(id);
-		dispatchJsonInGame(master, request, response);
+		printJsonInGame(request, response);
 	}
 	
 	/**
-	 * フィールド情報の出力を行う。
+	 * 進行中のゲームのフィールド情報の出力を行う。
 	 * 
-	 * @param master 
-	 * @throws ServletException
+	 * @param request リクエスト
+	 * @param response レスポンス
 	 * @throws IOException
 	 */
-	private void dispatchJsonInGame(GameMaster master, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/parameter/FieldInGame.jsp");
-		dispatcher.forward(request, response);
+	private void printJsonInGame(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	    response.setContentType("text/html; charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+	    Field field = (Field) request.getSession().getAttribute("field");
+	    
+	    out.println(field.toJsonInGame());
 	}
 }
 
