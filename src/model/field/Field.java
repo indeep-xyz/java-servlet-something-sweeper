@@ -1,6 +1,7 @@
 package model.field;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import model.cell.Cell;
 import model.cell.CellCreator;
@@ -292,25 +293,33 @@ public class Field
 	/**
 	 * 指定 ID のセルを開放状態にする。
 	 * @param id セルの ID
+	 * @param countTurn 開ける手番
+	 * @return 開放したセルの　ID
 	 */
-	public void openCell(int id) {
+	public ArrayList<Integer> openCell(int id) {
 		Cell cell = getCell(id);
+		ArrayList<Integer> openedId = new ArrayList<Integer>();
 		
-		if (cell != null) {
-			cell.open();
-			
+		if (cell != null
+				&& cell.open()) {
+			openedId.add(id);
+
 			if (cell.getAroundSomething() < 1) {
-				openAroundCells(id);
+				openedId.addAll(openAroundCells(id));
 			}
 		}
+		
+		return openedId;
 	}
 	
 	/**
 	 * 指定セル ID の周りにあるセルを開放状態にする。
 	 * @param centerId 中心となるセルの ID
+	 * @return 開放したセルの　ID
 	 */
-	private void openAroundCells(int centerId) {
+	private ArrayList<Integer> openAroundCells(int centerId) {
 		int[] aroundIdArray = getAroundCellIds(centerId);
+		ArrayList<Integer> openedId = new ArrayList<Integer>();
 		
 		for (int i = 0; i < aroundIdArray.length; i++) {
 			int aroundId = aroundIdArray[i];
@@ -318,9 +327,11 @@ public class Field
 			
 			if (cell != null
 					&& !(cell.isOpen())) {
-				openCell(aroundId);
+				openedId.addAll(openCell(aroundId));
 			}
 		}
+		
+		return openedId;
 	}
 
 	/**

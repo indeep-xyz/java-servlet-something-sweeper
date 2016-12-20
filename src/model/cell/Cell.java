@@ -16,7 +16,7 @@ public abstract class Cell {
 	 * セルが開放済みか否か
 	 */
 	private boolean isOpen;
-	
+
 	/**
 	 * コンストラクタ
 	 */
@@ -35,9 +35,17 @@ public abstract class Cell {
 
 	/**
 	 * セルを開放状態にする
+	 * @return 開放に成功したら true
 	 */
-	public void open() {
-		this.isOpen = true;
+	public boolean open() {
+		boolean isUpdated = false;
+		
+		if (!this.isOpen) {
+			this.isOpen = true;
+			isUpdated = true;
+		}
+		
+		return isUpdated;
 	}
 	
 	/**
