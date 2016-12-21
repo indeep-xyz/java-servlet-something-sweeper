@@ -1,14 +1,18 @@
 package controller.game;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import com.sun.istack.internal.logging.Logger;
+
 import model.field.Field;
 import model.field.FieldCreator;
 import model.field.FieldSurveillant;
+import model.history.History;
 
 /**
  * ゲーム本編の制御用クラス。
@@ -26,6 +30,11 @@ public class GameMaster {
 	 * ゲームが進行可能か否かを記録するためのセッション名。
 	 */
 	public static String SESSION_GAME_END_FLAG = "isGameEnd";
+
+	/**
+	 * 現在進行中のゲームの履歴を記録するためのセッション名。
+	 */
+	public static String SESSION_HISTORY = "history";
 	
 	/**
 	 * リクエスト用のオブジェクト
@@ -43,6 +52,11 @@ public class GameMaster {
 	private boolean isGameEnd;
 
 	/**
+	 * 進行中のゲームの履歴。
+	 */
+	private History history;
+
+	/**
 	 * コンストラクタ
 	 * @param request リクエスト用のオブジェクト
 	 * @param response レスポンス用のオブジェクト
@@ -50,6 +64,7 @@ public class GameMaster {
 	public GameMaster(HttpServletRequest request) {
 		this.request = request;
 		this.isGameEnd = false;
+		this.history = new History();
 	}
 
 	/**
@@ -88,6 +103,7 @@ public class GameMaster {
 		HttpSession session = this.request.getSession();
 		session.setAttribute(SESSION_FIELD_DATA, this.field);
 		session.setAttribute(SESSION_GAME_END_FLAG, this.isGameEnd);
+		session.setAttribute(SESSION_HISTORY, this.history);
 	}
 
 	/**
@@ -99,16 +115,23 @@ public class GameMaster {
 	public boolean loadGameData() throws ServletException, IOException {
 		boolean succeeded = false;
 		Field newField = null;
+		History newHistory = null;
 		
 		try {
 			HttpSession session = this.request.getSession();
 			newField = (Field) session.getAttribute(SESSION_FIELD_DATA);
+			newHistory = (History) session.getAttribute(SESSION_HISTORY);
 			this.isGameEnd = (boolean) session.getAttribute(SESSION_GAME_END_FLAG);
 		} catch (NullPointerException e) {
 			;
 		} finally {
 			if (newField != null) {
 				this.field = newField;
+				succeeded = true;
+			}
+			
+			if (newHistory != null) {
+				this.history = newHistory;
 				succeeded = true;
 			}
 		}
@@ -140,7 +163,12 @@ public class GameMaster {
 	 * @throws IOException
 	 */
 	public void openCell(int id) throws ServletException, IOException {
-		this.field.openCell(id);
+		ArrayList<Integer> openedId = this.field.openCell(id);
+		
+		if (0 < openedId.size()) {
+			this.history.add(openedId);
+		}
+		
 		saveGameData();
 	}
 
