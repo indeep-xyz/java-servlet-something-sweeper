@@ -1,4 +1,4 @@
-package controller.game;
+package controller.game.status;
 
 import java.io.IOException;
 import java.util.ArrayList;

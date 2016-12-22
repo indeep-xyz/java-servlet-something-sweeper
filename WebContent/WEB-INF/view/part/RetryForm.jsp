@@ -1,4 +1,4 @@
-<%@page import="controller.game.GameMaster"%>
+<%@page import="controller.game.status.GameMaster"%>
 <%@page import="model.field.Field"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

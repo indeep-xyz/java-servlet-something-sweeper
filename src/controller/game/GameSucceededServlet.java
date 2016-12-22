@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.game.status.GameMaster;
+
 /**
  * ゲーム成功時の画面の表示をおこなうサーブレット。
  * @author indeep-xyz
