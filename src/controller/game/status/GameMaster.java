@@ -212,4 +212,13 @@ public class GameMaster {
 		return this.field.toJsonResult();
 	}
 
+	/**
+	 * 進行中のゲームの履歴を表わす JSON 文字列を取得する。
+	 * 
+	 * @return 履歴を表す JSON 文字列
+	 */
+	public String getHistoryJson() {
+		return this.history.toJson();
+	}
+
 }
