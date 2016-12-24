@@ -14,6 +14,7 @@ String[] colors = {"black", "red", "yellow", "green", "lightgreen", "skyblue", "
 
 <script type="text/javascript" src="script/Game/game-result.js"></script>
 <script type="text/javascript" src="script/Game/field-manager.js"></script>
+<script type="text/javascript" src="script/Game/history-manager.js"></script>
 <script type="text/javascript" src="script/Game/cell.js"></script>
 </head>
 <body>
