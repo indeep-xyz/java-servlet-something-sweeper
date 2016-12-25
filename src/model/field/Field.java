@@ -3,8 +3,8 @@ package model.field;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import model.cell.Cell;
-import model.cell.CellCreator;
+import model.field.cell.Cell;
+import model.field.cell.CellCreator;
 
 /**
  * ゲーム用の領域を表現・保持するクラス。

@@ -1,6 +1,6 @@
 package model.field;
 
-import model.cell.Cell;
+import model.field.cell.Cell;
 
 /**
  * セル周辺の情報を調査するクラス。

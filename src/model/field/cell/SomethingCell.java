@@ -1,4 +1,4 @@
-package model.cell;
+package model.field.cell;
 
 /**
  * It is a something.

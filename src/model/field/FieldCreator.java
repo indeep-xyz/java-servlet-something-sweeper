@@ -3,8 +3,8 @@ package model.field;
 import javax.servlet.http.HttpServletRequest;
 
 import controller.tool.ParameterAgent;
-import model.cell.Cell;
-import model.cell.CellPot;
+import model.field.cell.Cell;
+import model.field.cell.CellPot;
 
 /**
  * 領域データの作成・初期化を担当する。
