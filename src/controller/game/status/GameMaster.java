@@ -7,8 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.sun.istack.internal.logging.Logger;
-
 import model.field.Field;
 import model.field.FieldCreator;
 import model.field.FieldSurveillant;
