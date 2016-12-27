@@ -1,12 +1,16 @@
 package model.field.cell;
 
+import java.io.Serializable;
+
 /**
  * It is a something.
  * @author indeep-xyz
  *
  */
 class SomethingCell
-		extends Cell {
+		extends Cell
+		implements Serializable
+		{
 
 	public SomethingCell() {
 		super();

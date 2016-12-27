@@ -1,12 +1,16 @@
 package model.field.cell;
 
+import java.io.Serializable;
+
 /**
  * 安全なセルを表すクラス
  * @author indeep-xyz
  *
  */
 class PlainCell
-		extends Cell {
+		extends Cell
+		implements Serializable
+		{
 
 	public PlainCell() {
 		super();
