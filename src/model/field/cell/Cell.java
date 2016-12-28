@@ -10,6 +10,7 @@ import java.io.Serializable;
 public abstract class Cell
 		implements Serializable
 		{
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 周囲にある Something の数。負数で未判定

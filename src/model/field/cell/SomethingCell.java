@@ -11,6 +11,7 @@ class SomethingCell
 		extends Cell
 		implements Serializable
 		{
+	private static final long serialVersionUID = 1L;
 
 	public SomethingCell() {
 		super();
