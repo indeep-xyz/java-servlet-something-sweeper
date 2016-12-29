@@ -174,6 +174,7 @@ public class Field
 	 * @param cell セル
 	 */
 	public void setCell(int index, Cell cell) {
+		cell.setIndex(index);
 		this.cells[index] = cell;
 	}
 
@@ -407,7 +408,7 @@ public class Field
 		
 		for (int i = 0; i < cells.length; i++) {
 			Cell cell = this.cells[i];
-			String cellJson = cell.toJsonInGame(i);
+			String cellJson = cell.toJsonInGame();
 
 			if (i > 0) {
 				data.append(",");
@@ -449,7 +450,7 @@ public class Field
 		
 		for (int i = 0; i < cells.length; i++) {
 			Cell cell = this.cells[i];
-			String cellJson = cell.toJson(i);
+			String cellJson = cell.toJson();
 
 			if (i > 0) {
 				data.append(",");
@@ -495,6 +496,6 @@ public class Field
 	}
 	
 	public String toJsonCellAt(Integer id) {
-		return this.cells[id].toJson(id);
+		return this.cells[id].toJson();
 	}
 }

@@ -16,7 +16,12 @@ public abstract class Cell
 	 * 周囲にある Something の数。負数で未判定
 	 */
 	protected int aroundSomething;
-	
+
+	/**
+	 * セルに充てられたインデックス番号。初期値は null 。
+	 */
+	private Integer index;
+
 	/**
 	 * セルが開放済みか否か
 	 */
@@ -26,6 +31,7 @@ public abstract class Cell
 	 * コンストラクタ
 	 */
 	public Cell() {
+		this.index = null;
 		this.isOpen = false;
 		this.aroundSomething = -1;
 	}
@@ -35,6 +41,22 @@ public abstract class Cell
 	 * @return Something なら true
 	 */
 	public abstract boolean isSomething();
+
+	/**
+	 * セルのインデックス番号を返す。
+	 * @return セルのインデックス番号
+	 */
+	public Integer getIndex() {
+		return index;
+	}
+
+	/**
+	 * セルのインデックス番号を設定する。
+	 * @param index セルのインデックス番号
+	 */
+	public void setIndex(Integer index) {
+		this.index = index;
+	}
 
 	/**
 	 * 周辺にある Something の数を返す
@@ -85,14 +107,13 @@ public abstract class Cell
 	 *     isSomething: The instance is a something cell or not.
 	 * }
 	 *     
-	 * @param id セルの ID
 	 * @return  JSON 文字列に変換されたセルの状態
 	 */
-	public String toJson(Integer id) {
+	public String toJson() {
 		StringBuilder jsonSource = new StringBuilder("{");
 		
-		if (id != null) {
-			jsonSource.append("\"index\":" + id);
+		if (index != null) {
+			jsonSource.append("\"index\":" + this.index);
 			jsonSource.append(",");
 		}
 
@@ -115,14 +136,13 @@ public abstract class Cell
 	 *     isSomething: The instance is a something cell or not. This parameter is contained only if the instance opened.
 	 * }
 	 * 
-	 * @param id セルの ID
 	 * @return  JSON 文字列に変換されたセルの状態
 	 */
-	public String toJsonInGame(Integer id) {
+	public String toJsonInGame() {
 		StringBuilder jsonSource = new StringBuilder("{");
 		
-		if (id != null) {
-			jsonSource.append("\"index\":" + id);
+		if (index != null) {
+			jsonSource.append("\"index\":" + this.index);
 			jsonSource.append(",");
 		}
 
