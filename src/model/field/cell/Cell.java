@@ -31,6 +31,28 @@ public abstract class Cell
 	}
 
 	/**
+	 * セルが Something か否かを返す
+	 * @return Something なら true
+	 */
+	public abstract boolean isSomething();
+
+	/**
+	 * 周辺にある Something の数を返す
+	 * @return 周辺にある Something の数
+	 */
+	public int getAroundSomething() {
+		return this.aroundSomething;
+	}
+	
+	/**
+	 * 周辺にある Something の数を設定する
+	 * @param somethingCount Something の数
+	 */
+	public void setAroundSomething(int somethingCount) {
+		this.aroundSomething = somethingCount;
+	}
+	
+	/**
 	 * 開放状態を返す
 	 * @return 開放済みなら true
 	 */
@@ -114,27 +136,5 @@ public abstract class Cell
 		jsonSource.append("}");
 		
 		return jsonSource.toString();
-	}
-
-	/**
-	 * セルが Something か否かを返す
-	 * @return Something なら true
-	 */
-	public abstract boolean isSomething();
-
-	/**
-	 * 周辺にある Something の数を返す
-	 * @return 周辺にある Something の数
-	 */
-	public int getAroundSomething() {
-		return this.aroundSomething;
-	}
-	
-	/**
-	 * 周辺にある Something の数を設定する
-	 * @param somethingCount Something の数
-	 */
-	public void setAroundSomething(int somethingCount) {
-		this.aroundSomething = somethingCount;
 	}
 }
