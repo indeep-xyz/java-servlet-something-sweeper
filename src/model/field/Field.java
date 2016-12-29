@@ -403,39 +403,22 @@ public class Field
 	 * @return JSON 文字列
 	 */
 	public String toJsonInGame(){
-		StringBuilder data = new StringBuilder("{");
-
-		data.append("\"width\":" + this.width);
-		data.append(",\"height\":" + this.height);
-		data.append(",\"difficulty\":" + this.difficulty);
-		data.append(",\"isCompleted\":" + isPlainAllOpen());
-		data.append(",\"countSomethingOpened\":" + countSomethingOpenedCells());
-		data.append(",\"cells\":[");
+		StringBuilder data = new StringBuilder("\"cells\":[");
 		
 		for (int i = 0; i < cells.length; i++) {
 			Cell cell = this.cells[i];
-			int around = (cell.isOpen()) ? cell.getAroundSomething() : -1;
+			String cellJson = cell.toJsonInGame(i);
 
 			if (i > 0) {
 				data.append(",");
 			}
-			
-			data.append("{");
-			data.append("\"index\":" + i);
-			data.append(",\"isOpen\":" + cell.isOpen());
-			
-			if (cell.isOpen()) {
-				data.append(",\"aroundSomething\":" + around);
-				data.append(",\"isSomething\":" + cell.isSomething());
-			}
-			
-			data.append("}");
+
+			data.append(cellJson);
 		}
 		
 		data.append("]");
-		data.append("}");
-		
-		return data.toString();
+
+		return createFieldJson(data.toString());
 	}
 
 	/**
@@ -462,6 +445,41 @@ public class Field
 	 * @return JSON 文字列
 	 */
 	public String toJsonResult() {
+		StringBuilder data = new StringBuilder("\"cells\":[");
+		
+		for (int i = 0; i < cells.length; i++) {
+			Cell cell = this.cells[i];
+			String cellJson = cell.toJson(i);
+
+			if (i > 0) {
+				data.append(",");
+			}
+			
+			data.append(cellJson);
+		}
+		
+		data.append("]");
+		
+		return createFieldJson(data.toString());
+	}
+
+	/**
+	 * 渡された JSON 文字列をフィールド部分の JSON 文字列で包む。
+	 * 
+	 * {
+	 *   width: Width of the field.
+	 *   height: Height of the field.
+	 *   difficulty: Difficulty in the current game.
+	 *   isCompleted: All the plain cells opened or not.
+	 *   countSomethingOpened: Number of opened something cells.
+	 *   
+	 *   ... And JSON converted from Cells data.
+	 * }
+	 * 
+	 * @param cellsAsJson
+	 * @return フィールド部分の情報を足した JSON 文字列
+	 */
+	private String createFieldJson(String innerJson) {
 		StringBuilder data = new StringBuilder("{");
 
 		data.append("\"width\":" + this.width);
@@ -469,28 +487,14 @@ public class Field
 		data.append(",\"difficulty\":" + this.difficulty);
 		data.append(",\"isCompleted\":" + isPlainAllOpen());
 		data.append(",\"countSomethingOpened\":" + countSomethingOpenedCells());
-		data.append(",\"cells\":[");
-		
-		for (int i = 0; i < cells.length; i++) {
-			Cell cell = this.cells[i];
-			int around = cell.getAroundSomething();
 
-			if (i > 0) {
-				data.append(",");
-			}
-			
-			data.append("{");
-			data.append("\"index\":" + i);
-			data.append(",\"isOpen\":" + true);
-			data.append(",\"aroundSomething\":" + around);
-			data.append(",\"isSomething\":" + cell.isSomething());
-			
-			data.append("}");
-		}
-		
-		data.append("]");
+		data.append("," + innerJson);
 		data.append("}");
-		
+
 		return data.toString();
+	}
+	
+	public String toJsonCellAt(Integer id) {
+		return this.cells[id].toJson(id);
 	}
 }
