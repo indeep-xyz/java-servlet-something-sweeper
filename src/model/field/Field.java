@@ -495,7 +495,12 @@ public class Field
 		return data.toString();
 	}
 	
-	public String toJsonCellAt(Integer id) {
-		return this.cells[id].toJson();
+	/**
+	 * 特定セルの JSON 文字列を返す。
+	 * @param index セルのインデックス番号
+	 * @return 特定セルの JSON 文字列
+	 */
+	public String getCellAsJson(Integer index) {
+		return this.cells[index].toJson();
 	}
 }
