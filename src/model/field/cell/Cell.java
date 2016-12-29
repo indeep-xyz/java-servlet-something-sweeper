@@ -52,7 +52,70 @@ public abstract class Cell
 		
 		return isUpdated;
 	}
-	
+
+	/**
+	 * セルの状態を JSON 文字列に変換して返す。
+	 * 
+	 * {
+	 *     index: An index in the field.
+	 *     isOpen: The instance is opened or not.
+	 *     aroundSomething: Number of something cells around.
+	 *     isSomething: The instance is a something cell or not.
+	 * }
+	 *     
+	 * @param id セルの ID
+	 * @return  JSON 文字列に変換されたセルの状態
+	 */
+	public String toJson(Integer id) {
+		StringBuilder jsonSource = new StringBuilder("{");
+		
+		if (id != null) {
+			jsonSource.append("\"index\":" + id);
+			jsonSource.append(",");
+		}
+
+		jsonSource.append("\"isOpen\":" + true);
+		jsonSource.append(",\"aroundSomething\":" + this.aroundSomething);
+		jsonSource.append(",\"isSomething\":" + this.isSomething());
+		
+		jsonSource.append("}");
+		
+		return jsonSource.toString();
+	}
+
+	/**
+	 * 開放状態に応じてセルの状態を JSON 文字列に変換して返す。
+	 * 
+	 * {
+	 *     index: An index in the field.
+	 *     isOpen: The instance is opened or not.
+	 *     aroundSomething: Number of something cells around. This parameter is contained only if the instance opened.
+	 *     isSomething: The instance is a something cell or not. This parameter is contained only if the instance opened.
+	 * }
+	 * 
+	 * @param id セルの ID
+	 * @return  JSON 文字列に変換されたセルの状態
+	 */
+	public String toJsonInGame(Integer id) {
+		StringBuilder jsonSource = new StringBuilder("{");
+		
+		if (id != null) {
+			jsonSource.append("\"index\":" + id);
+			jsonSource.append(",");
+		}
+
+		jsonSource.append("\"isOpen\":" + this.isOpen);
+		
+		if (this.isOpen) {
+			jsonSource.append(",\"aroundSomething\":" + this.aroundSomething);
+			jsonSource.append(",\"isSomething\":" + this.isSomething());
+		}
+		
+		jsonSource.append("}");
+		
+		return jsonSource.toString();
+	}
+
 	/**
 	 * セルが Something か否かを返す
 	 * @return Something なら true
