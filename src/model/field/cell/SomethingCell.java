@@ -13,10 +13,6 @@ class SomethingCell
 		{
 	private static final long serialVersionUID = 1L;
 
-	public SomethingCell() {
-		super();
-	}
-
 	/**
 	 * セルが Something か否かを返す
 	 * @return Something なら true
