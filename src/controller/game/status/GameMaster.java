@@ -215,8 +215,7 @@ public class GameMaster {
 	 * 
 	 * @return 履歴を表す JSON 文字列
 	 */
-	public String getHistoryJson() {
-		return this.history.toJson();
+	public String getHistoryAsJson() {
+		return this.history.toJson(field);
 	}
-
 }

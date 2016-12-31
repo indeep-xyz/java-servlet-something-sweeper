@@ -3,6 +3,8 @@ package model.history;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import model.field.Field;
+
 /**
  * 進行中のゲームの履歴の一部を管理するクラス。
  * @author indeep-xyz
@@ -54,13 +56,13 @@ public class HistoryRecord
 
 	/**
 	 * 情報を JSON 化して返す。
+	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
 	 * @return インスタンス全体の情報をもつ JSON
 	 */
-	public String toJson() {
+	public String toJson(Field field) {
 		StringBuilder jsonSource = new StringBuilder("{");
 
-		jsonSource.append(createJsonWithOpenedId());
-
+		jsonSource.append(createJsonOpendCells(field));
 		jsonSource.append("}");
 		
 		return jsonSource.toString();
@@ -68,21 +70,21 @@ public class HistoryRecord
 
 	/**
 	 * このレコードが扱う開放セルの情報を JSON 化して返す。
+	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
 	 * @return レコードの JSON
 	 */
-	private String createJsonWithOpenedId() {
-		StringBuilder jsonSource = new StringBuilder();
-
-		jsonSource.append("\"openedId\":[");
+	private String createJsonOpendCells(Field field) {
+		StringBuilder jsonSource = new StringBuilder("\"openedCells\":[");
 		
 		for (int i = 0; i < this.openedId.size(); i++) {
 			Integer id = this.openedId.get(i);
+			String cellJson = field.getCellAsJson(id);
 			
 			if (0 < i) {
 				jsonSource.append(",");
 			}
 
-			jsonSource.append(id);
+			jsonSource.append(cellJson);
 		}
 		
 		jsonSource.append("]");

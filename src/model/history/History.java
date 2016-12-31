@@ -3,6 +3,8 @@ package model.history;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import model.field.Field;
+
 /**
  * 進行中のゲームの履歴を管理するクラス。
  * @author indeep-xyz
@@ -58,12 +60,13 @@ public class History
 	
 	/**
 	 * 情報を JSON 化して返す。
+	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
 	 * @return インスタンス全体の情報をもつ JSON
 	 */
-	public String toJson() {
+	public String toJson(Field field) {
 		StringBuilder jsonSource = new StringBuilder("{");
 
-		jsonSource.append(convertRecordsToJson());
+		jsonSource.append(convertRecordsToJson(field));
 		jsonSource.append("}");
 		
 		return jsonSource.toString();
@@ -71,9 +74,10 @@ public class History
 
 	/**
 	 * 範囲内のレコードの情報を JSON 化して返す。
+	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
 	 * @return レコードの JSON
 	 */
-	private String convertRecordsToJson() {
+	private String convertRecordsToJson(Field field) {
 		StringBuilder jsonSource = new StringBuilder();
 
 		jsonSource.append("\"records\":[");
@@ -86,7 +90,7 @@ public class History
 			}
 
 			jsonSource.append(
-					convertRecordToJson(record, i));
+					convertRecordToJson(record, field, i));
 		}
 		
 		jsonSource.append("]");
@@ -96,14 +100,17 @@ public class History
 
 	/**
 	 * 単一レコードの情報を JSON 化して返す。
+	 * @param record レコード
+	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
+	 * @param orderNumber レコードの順番
 	 * @return レコードの JSON
 	 */
-	private String convertRecordToJson(HistoryRecord record, int orderNumber) {
+	private String convertRecordToJson(HistoryRecord record, Field field, int orderNumber) {
 		StringBuilder jsonSource = new StringBuilder();
 
 		jsonSource.append("{");
 		jsonSource.append("\"orderNumber\":" + orderNumber);
-		jsonSource.append(",\"record\":" + record.toJson());
+		jsonSource.append(",\"record\":" + record.toJson(field));
 		jsonSource.append("}");
 		
 		return jsonSource.toString();
