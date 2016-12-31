@@ -8,10 +8,8 @@
  */
 var Cell = function(fieldManager, source){
 	this.fieldManager = fieldManager;
-	this.source = source;
-
-	self.index = source.index;
-	self.isOpen = source.isOpen;
+	this.index = source.index;
+	this.isOpen = source.isOpen;
 
 	this.initDomObject(source);
 };
