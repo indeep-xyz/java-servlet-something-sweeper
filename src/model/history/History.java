@@ -57,16 +57,18 @@ public class History
 		HistoryRecord record = new HistoryRecord(openedId);
 		this.records.add(record);
 	}
-	
+
 	/**
 	 * 情報を JSON 化して返す。
+	 * 
 	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
+	 * @param startRecordIndex 履歴の開始インデックス
 	 * @return インスタンス全体の情報をもつ JSON
 	 */
-	public String toJson(Field field) {
+	public String toJson(Field field, int startRecordIndex) {
 		StringBuilder jsonSource = new StringBuilder("{");
 
-		jsonSource.append(convertRecordsToJson(field));
+		jsonSource.append(convertRecordsToJson(field, startRecordIndex));
 		jsonSource.append("}");
 		
 		return jsonSource.toString();
@@ -75,14 +77,15 @@ public class History
 	/**
 	 * 範囲内のレコードの情報を JSON 化して返す。
 	 * @param field 戻り値の JSON にセルのデータを付けるためのインスタンス
+	 * @param startRecordIndex 履歴の開始インデックス
 	 * @return レコードの JSON
 	 */
-	private String convertRecordsToJson(Field field) {
+	private String convertRecordsToJson(Field field, int startRecordIndex) {
 		StringBuilder jsonSource = new StringBuilder();
 
 		jsonSource.append("\"records\":[");
 		
-		for (int i = 0; i < this.records.size(); i++) {
+		for (int i = startRecordIndex; i < this.records.size(); i++) {
 			HistoryRecord record = this.records.get(i);
 			
 			if (0 < i) {

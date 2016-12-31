@@ -209,13 +209,14 @@ public class GameMaster {
 	public String getFieldJsonResult() {
 		return this.field.toJsonResult();
 	}
-
+	
 	/**
-	 * 進行中のゲームの履歴を表わす JSON 文字列を取得する。
+	 * 進行中のゲームの開始インデックス以降の履歴情報を表わす JSON 文字列を取得する。
 	 * 
+	 * @param startIndex 履歴の開始インデックス
 	 * @return 履歴を表す JSON 文字列
 	 */
-	public String getHistoryAsJson() {
-		return this.history.toJson(field);
+	public String getHistoryAsJson(int startIndex) {
+		return this.history.toJson(field, startIndex);
 	}
 }
