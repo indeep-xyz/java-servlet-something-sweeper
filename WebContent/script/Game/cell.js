@@ -79,6 +79,20 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	// private functions - in Cell.prototype.initDomObject
 
 	/**
+	 * Create a cell initialized common settings.
+	 *
+	 * @private
+	 * @method
+	 * @return {HTMLElement} A cell initialized common settings
+	 */
+	function createBaseCell() {
+		var cell = document.createElement('div');
+		cell.className = 'cell';
+
+		return cell;
+	}
+
+	/**
 	 * Create a plain cell.
 	 *
 	 * @private
@@ -87,8 +101,8 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	 * @return {HTMLElement} A plain cell
 	 */
 	function createPlainCell(aroundSomething) {
-		var cell = document.createElement('div');
-		cell.className = 'cell opened plain';
+		var cell = createBaseCell();
+		cell.className += ' opened plain';
 
 		if (0 < aroundSomething) {
 			cell.innerHTML = aroundSomething;
@@ -105,8 +119,8 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	 * @return {HTMLElement} A something cell
 	 */
 	function createSomethingCell() {
-		var cell = document.createElement('div');
-		cell.className = 'cell opened something';
+		var cell = createBaseCell();
+		cell.className += ' opened something';
 
 		return cell;
 	}
@@ -121,14 +135,12 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	 * @return {HTMLElement} An unknown cell
 	 */
 	function createUnknownCell(index, doesAttachEvent) {
-		var cell = document.createElement('div');
-		cell.className = 'cell';
+		var cell = createBaseCell();
 
 		if (doesAttachEvent) {
 			cell.className += ' clickable';
 
 			cell.addEventListener('click', function() {
-				// console.info('[Cell.prototype.initDomObject#createUnknownCell] index = ' + index);
 				self.fieldManager.loadField(index);
 			});
 		}
