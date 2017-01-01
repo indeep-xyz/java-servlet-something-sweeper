@@ -5,13 +5,14 @@
  * @constructor
  * @param {FieldManager} fieldManager - An instance to manage field
  * @param {object} source - Parameters to create a cell
+ * @param {boolean} doesAttachEvent - Set a click event when it is true
  */
-var Cell = function(fieldManager, source){
+var Cell = function(fieldManager, source, doesAttachEvent){
 	this.fieldManager = fieldManager;
 	this.index = source.index;
 	this.isOpen = source.isOpen;
-
-	this.initDomObject(source);
+	
+	this.initDomObject(source, doesAttachEvent);
 };
 
 /**
@@ -60,8 +61,9 @@ Cell.prototype.domObject = undefined;
  * @public
  * @method
  * @param  {object} source - Parameters to create a cell
+ * @param  {boolean} doesAttachEvent - Set a click event when it is true
  */
-Cell.prototype.initDomObject = function(source) {
+Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	// - - - - - - - - - - - - - - - -
 	// private variables - in Cell.prototype.initDomObject
 
@@ -115,16 +117,21 @@ Cell.prototype.initDomObject = function(source) {
 	 * @private
 	 * @method
 	 * @param  {number} index - An ID of a cell
+	 * @param  {boolean} doesAttachEvent - Set a click event when it is true
 	 * @return {HTMLElement} An unknown cell
 	 */
-	function createUnknownCell(index) {
+	function createUnknownCell(index, doesAttachEvent) {
 		var cell = document.createElement('div');
-		cell.className = 'cell clickable';
+		cell.className = 'cell';
 
-		cell.addEventListener('click', function() {
-			// console.info('[Cell.prototype.initDomObject#createUnknownCell] index = ' + index);
-			self.fieldManager.loadField(index);
-		});
+		if (doesAttachEvent) {
+			cell.className += ' clickable';
+
+			cell.addEventListener('click', function() {
+				// console.info('[Cell.prototype.initDomObject#createUnknownCell] index = ' + index);
+				self.fieldManager.loadField(index);
+			});
+		}
 
 		return cell;
 	}
@@ -145,7 +152,7 @@ Cell.prototype.initDomObject = function(source) {
 		}
 	}
 	else {
-		domObject = createUnknownCell(source.index);
+		domObject = createUnknownCell(source.index, doesAttachEvent);
 	}
 
 	self.domObject = domObject;
