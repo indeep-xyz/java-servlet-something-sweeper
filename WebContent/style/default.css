@@ -138,3 +138,50 @@ header h1 {
 	z-index: 0;
     margin: 0 auto;
 }
+
+/**
+ * #replay-wrapper 
+ * The controls to replay history of game.
+ */
+ 
+#replay-wrapper {
+	position: absolute;
+	right: 0;
+	top: 0;
+	
+	border: 1px solid #000000;
+	background-color: #d0d0d0;
+}
+
+#replay-wrapper {
+    border: 1px solid #000000;
+}
+
+#replay-operator-wrapper {
+}
+
+#replay-operator-wrapper.disabled {
+    display: none;
+}
+
+#replay-operator-wrapper.enabled {
+    display: block;
+}
+
+#replay-switch-mode-controller {
+}
+
+#replay-switch-mode-controller.on {
+    background-color: #e8f8e8;
+}
+
+#replay-switch-mode-controller.off {
+    background-color: #f0e8e8;
+}
+
+
+
+
+
+
+

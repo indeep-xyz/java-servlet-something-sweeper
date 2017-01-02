@@ -23,3 +23,16 @@ int difficulty = field.getDifficulty();
         <input type="submit" value="設定を初期化して最初から">
     </p>
 </form>
+
+<div id="replay-wrapper">
+    <p>
+        <input type="checkbox" id="replay-mode">
+        <label for="replay-mode">replay mode</label>
+    </p>
+    
+    <div id="replay-operator-wrapper">
+	    <button id="replay-reset-controller">Reset</button>
+	    <button id="replay-next-controller">Next</button>
+	    <button id="replay-previous-controller">Previous</button>
+    </div>
+</div>

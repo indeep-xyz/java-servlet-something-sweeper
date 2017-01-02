@@ -153,7 +153,8 @@ FieldManager.prototype.loadField = function(cellIndex) {
 				window.location = location;
 			}
 			else {
-				self.updateFieldView(result);
+				self.fieldData = result;
+				self.refreshFieldView();
 			}
 
 		}
@@ -182,7 +183,7 @@ FieldManager.prototype.loadField = function(cellIndex) {
  * @method
  * @param  {object} fieldSource - Parameters to update the field view
  */
-FieldManager.prototype.updateFieldView = function(fieldSource) {
+FieldManager.prototype.refreshFieldView = function() {
   // console.info('[FieldManager.prototype.updateFieldView] IN');
 
 	// - - - - - - - - - - - - - - - -
@@ -219,7 +220,7 @@ FieldManager.prototype.updateFieldView = function(fieldSource) {
 
 			for (var x = 0; x < source.width; x++) {
 				var index = y * source.width + x;
-				var cell = new Cell(self, source.cells[index]);
+				var cell = new Cell(self, source.cells[index], true);
 
 				domRow.appendChild(cell.domObject);
 			}
@@ -230,25 +231,90 @@ FieldManager.prototype.updateFieldView = function(fieldSource) {
 		return domField;
 	}
 
-	/**
-	 * Replace a field view to new one.
-	 *
-	 * @private
-	 * @method
-	 * @param  {HTMLElement} newField - An element as a field view
-	 */
-	function replaceField(newField) {
-		var oldField = document.querySelector('#' + self.fieldId);
-
-		oldField.parentNode.replaceChild(newField, oldField);
-		oldField = null;
-	}
-
 	// - - - - - - - - - - - - - - - -
 	// main - in FieldManager.prototype.updateFieldView
 
-	var field = createField(fieldSource);
-	replaceField(field);
+	var field = createField(this.fieldData);
+	this.updateField(field);
 
   // console.info('[FieldManager.prototype.updateFieldView] OUT');
 };
+
+/**
+ * Update the field view with field data object.
+ *
+ * @public
+ * @method
+ * @param  {object} cellDataArray - Cell data to update cells in the field view
+ */
+FieldManager.prototype.updateViewByCellDataArray = function(cellDataArray) {
+	var tmpField = document.getElementById(this.fieldId).cloneNode(true);
+	var tmpCellArray = tmpField.querySelectorAll('.cell');
+	
+	for (var i = 0; i < cellDataArray.length; i++) {
+		var newCellObject = new Cell(this, cellDataArray[i]);
+		var newCell = newCellObject.domObject;
+		var oldCell = tmpCellArray[newCellObject.index];
+		
+		if (newCell.className !== oldCell.className) {
+			this.replaceCell(newCellObject.domObject, oldCell);
+		}
+	}
+
+	this.updateField(tmpField);
+};
+
+
+/**
+ * Load field data and it puts into the view.
+ * If you pass an index of a cell,
+ * open a cell at the index and then load.
+ *
+ * @public
+ * @method
+ * @param  {number} cellIndex - An index of a cell to open
+ */
+FieldManager.prototype.resetView = function() {
+	var tmpField = document.getElementById(this.fieldId).cloneNode(true);
+	var tmpCellArray = tmpField.querySelectorAll('.cell');
+	
+	for (var i = 0; i < tmpCellArray.length; i++) {
+		var newCellObject = new Cell(null, {index: i});
+		var newCell = newCellObject.domObject;
+		var oldCell = tmpCellArray[i];
+
+		if (newCell.className !== oldCell.className) {
+			this.replaceCell(newCell, oldCell);
+		}
+	}
+
+	this.updateField(tmpField);
+};
+
+/**
+ * Replace a cell element in the field view.
+ *
+ * @public
+ * @method
+ * @param  {HTMLElement} newCell - A new cell element as a replacement
+ * @param  {HTMLElement} oldCell - An old cell element as a replacement
+ */
+FieldManager.prototype.replaceCell = function(newCell, oldCell){
+	oldCell.parentNode.replaceChild(newCell, oldCell);
+	oldCell = null;
+}
+
+/**
+ * Update the field view to new one.
+ *
+ * @public
+ * @method
+ * @param  {HTMLElement} newField - A new field element as a replacement
+ */
+FieldManager.prototype.updateField = function(newField) {
+	var oldField = document.getElementById(this.fieldId);
+
+	oldField.parentNode.replaceChild(newField, oldField);
+	oldField = null;
+}
+
