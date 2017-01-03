@@ -7,7 +7,7 @@
  * @param {object} source - Parameters to create a cell
  * @param {boolean} doesAttachEvent - Set a click event when it is true
  */
-var Cell = function(fieldManager, source, doesAttachEvent){
+var CellObject = function(fieldManager, source, doesAttachEvent){
 	this.fieldManager = fieldManager;
 	this.index = source.index;
 	this.isOpen = source.isOpen;
@@ -21,7 +21,7 @@ var Cell = function(fieldManager, source, doesAttachEvent){
  * @public
  * @var {FieldManager}
  */
-Cell.prototype.fieldManager = undefined;
+CellObject.prototype.fieldManager = undefined;
 
 /**
  * Parameters to create a cell.
@@ -29,7 +29,7 @@ Cell.prototype.fieldManager = undefined;
  * @public
  * @var {object}
  */
-Cell.prototype.source = undefined;
+CellObject.prototype.source = undefined;
 
 /**
  * An ID of the cell.
@@ -37,7 +37,7 @@ Cell.prototype.source = undefined;
  * @public
  * @var {number}
  */
-Cell.prototype.index = undefined;
+CellObject.prototype.index = undefined;
 
 /**
  * A status that the cell is open or not.
@@ -45,7 +45,7 @@ Cell.prototype.index = undefined;
  * @public
  * @var {boolean}
  */
-Cell.prototype.isOpen = undefined;
+CellObject.prototype.isOpen = undefined;
 
 /**
  * A DOM object as a cell.
@@ -53,7 +53,7 @@ Cell.prototype.isOpen = undefined;
  * @public
  * @var {HTMLElement}
  */
-Cell.prototype.domObject = undefined;
+CellObject.prototype.domObject = undefined;
 
 /**
  * Initialize a DOM object in an instance.
@@ -63,9 +63,9 @@ Cell.prototype.domObject = undefined;
  * @param  {object} source - Parameters to create a cell
  * @param  {boolean} doesAttachEvent - Set a click event when it is true
  */
-Cell.prototype.initDomObject = function(source, doesAttachEvent) {
+CellObject.prototype.initDomObject = function(source, doesAttachEvent) {
 	// - - - - - - - - - - - - - - - -
-	// private variables - in Cell.prototype.initDomObject
+	// private variables - in CellObject.prototype.initDomObject
 
 	/**
 	 * An instance of FieldManager.
@@ -76,7 +76,7 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	var self = this;
 
 	// - - - - - - - - - - - - - - - -
-	// private functions - in Cell.prototype.initDomObject
+	// private functions - in CellObject.prototype.initDomObject
 
 	/**
 	 * Create a cell initialized common settings.
@@ -149,7 +149,7 @@ Cell.prototype.initDomObject = function(source, doesAttachEvent) {
 	}
 
 	// - - - - - - - - - - - - - - - -
-	// main - in Cell.prototype.initDomObject
+	// main - in CellObject.prototype.initDomObject
 
 	// domObject.innerHTML = source.html;
 

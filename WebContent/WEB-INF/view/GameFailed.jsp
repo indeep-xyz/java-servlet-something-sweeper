@@ -11,7 +11,7 @@
 <script type="text/javascript" src="script/Game/field-manager.js"></script>
 <script type="text/javascript" src="script/Game/history-loader.js"></script>
 <script type="text/javascript" src="script/Game/history-viewer.js"></script>
-<script type="text/javascript" src="script/Game/cell.js"></script>
+<script type="text/javascript" src="script/Game/cell-object.js"></script>
 </head>
 <body>
 

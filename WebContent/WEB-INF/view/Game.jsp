@@ -9,7 +9,7 @@
 
 <script type="text/javascript" src="script/Game/main.js"></script>
 <script type="text/javascript" src="script/Game/field-manager.js"></script>
-<script type="text/javascript" src="script/Game/cell.js"></script>
+<script type="text/javascript" src="script/Game/cell-object.js"></script>
 </head>
 <body>
 

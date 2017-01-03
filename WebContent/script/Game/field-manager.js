@@ -220,7 +220,7 @@ FieldManager.prototype.refreshFieldView = function() {
 
 			for (var x = 0; x < source.width; x++) {
 				var index = y * source.width + x;
-				var cell = new Cell(self, source.cells[index], true);
+				var cell = new CellObject(self, source.cells[index], true);
 
 				domRow.appendChild(cell.domObject);
 			}
@@ -252,7 +252,7 @@ FieldManager.prototype.updateViewByCellDataArray = function(cellDataArray) {
 	var tmpCellArray = tmpField.querySelectorAll('.cell');
 	
 	for (var i = 0; i < cellDataArray.length; i++) {
-		var newCellObject = new Cell(this, cellDataArray[i]);
+		var newCellObject = new CellObject(this, cellDataArray[i]);
 		var newCell = newCellObject.domObject;
 		var oldCell = tmpCellArray[newCellObject.index];
 		
@@ -279,7 +279,7 @@ FieldManager.prototype.resetView = function() {
 	var tmpCellArray = tmpField.querySelectorAll('.cell');
 	
 	for (var i = 0; i < tmpCellArray.length; i++) {
-		var newCellObject = new Cell(null, {index: i});
+		var newCellObject = new CellObject(null, {index: i});
 		var newCell = newCellObject.domObject;
 		var oldCell = tmpCellArray[i];
 
