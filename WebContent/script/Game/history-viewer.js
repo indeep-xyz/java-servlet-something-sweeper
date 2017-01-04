@@ -84,7 +84,7 @@ HistoryViewer.prototype.initControls = function(options) {
 				else {
 					switcher.checked = false;
 					operatorWrapper.className = 'replay operator-wrapper disabled';
-					self.fieldManager.refreshFieldView();
+					self.fieldManager.loadField();
 				}
 			});
 		}
@@ -271,8 +271,8 @@ HistoryViewer.prototype.previous = function() {
 HistoryViewer.prototype.updateView = function(cellDataArray) {
 	var fieldManager = new FieldManager(this.fieldId, null);
 
-	console.info(this.orderNumber);
-	console.info(cellDataArray);
+//	console.info(this.orderNumber);
+//	console.info(cellDataArray);
 	
 	fieldManager.updateViewByCellDataArray(cellDataArray);
 };
@@ -284,6 +284,5 @@ HistoryViewer.prototype.updateView = function(cellDataArray) {
  * @method
  */
 HistoryViewer.prototype.resetView = function() {
-	var fieldManager = new FieldManager(this.fieldId, null);
-	fieldManager.resetView();
+	this.fieldManager.resetView();
 };

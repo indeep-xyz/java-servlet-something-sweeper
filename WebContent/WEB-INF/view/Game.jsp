@@ -9,6 +9,8 @@
 
 <script type="text/javascript" src="script/Game/main.js"></script>
 <script type="text/javascript" src="script/Game/field-manager.js"></script>
+<script type="text/javascript" src="script/Game/field-loader.js"></script>
+<script type="text/javascript" src="script/Game/field-object.js"></script>
 <script type="text/javascript" src="script/Game/cell-object.js"></script>
 </head>
 <body>

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var fieldManager = new FieldManager('field', true);
   
   fieldManager.loadField();
+  
   HistoryLoader.loadAll(function(historyData) {
     var historyViewer = new HistoryViewer(historyData, {
         'field': 'field',

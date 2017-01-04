@@ -7,8 +7,8 @@
  * @param {object} source - Parameters to create a cell
  * @param {boolean} doesAttachEvent - Set a click event when it is true
  */
-var CellObject = function(fieldManager, source, doesAttachEvent){
-	this.fieldManager = fieldManager;
+var CellObject = function(fieldObject, source, doesAttachEvent){
+	this.fieldObject = fieldObject;
 	this.index = source.index;
 	this.isOpen = source.isOpen;
 	
@@ -21,7 +21,7 @@ var CellObject = function(fieldManager, source, doesAttachEvent){
  * @public
  * @var {FieldManager}
  */
-CellObject.prototype.fieldManager = undefined;
+CellObject.prototype.fieldObject = undefined;
 
 /**
  * Parameters to create a cell.
@@ -141,7 +141,7 @@ CellObject.prototype.initDomObject = function(source, doesAttachEvent) {
 			cell.className += ' clickable';
 
 			cell.addEventListener('click', function() {
-				self.fieldManager.loadField(index);
+				self.fieldObject.openCell(index);
 			});
 		}
 
