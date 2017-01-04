@@ -84,7 +84,10 @@ HistoryViewer.prototype.initControls = function(options) {
 				else {
 					switcher.checked = false;
 					operatorWrapper.className = 'replay operator-wrapper disabled';
-					self.fieldManager.loadField();
+					
+					if (!self.fieldManager.loadFieldFromCache()) {
+						self.fieldManager.loadField();
+					}
 				}
 			});
 		}

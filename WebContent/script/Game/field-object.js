@@ -179,6 +179,26 @@ FieldObject.prototype.loadField = function() {
 }
 
 /**
+ * Load field data from the cache data.
+ *
+ * @public
+ * @method
+ * @return {boolean} The value is true when loading from cache of an instance, else false
+ * @see FieldLoader#loadFromCache
+ */
+FieldObject.prototype.loadFieldFromCache = function() {
+	var self = this;
+	
+	return this.fieldLoader.loadFromCache(function(fieldData) {
+		var isGameEnd = self.fieldManager.callbackLoadedField(fieldData);
+		
+		if (!isGameEnd) {
+			self.updateField(fieldData);
+		}
+	});
+}
+
+/**
  * Open a cell and load field data and then
  * put it into the field element.
  *

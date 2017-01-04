@@ -17,6 +17,15 @@ var FieldLoader = function(){
 FieldLoader.URL_FIELD_DATA = 'FieldData';
 
 /**
+ * Cache of field data.
+ * This is updated automatically at loading field data.
+ * 
+ * @public
+ * @var {object}
+ */
+FieldLoader.prototype.fieldDataCache = undefined;
+
+/**
  * Load field data from the server which has
  * the state of a field.
  *
@@ -81,6 +90,8 @@ FieldLoader.prototype.load = function(isResultMode, callbackLoadedField) {
 	function callback() {
 		if (this.status === 200) {
 			var fieldData = JSON.parse(this.responseText);
+			
+			self.fieldDataCache = fieldData;
 			callbackLoadedField(fieldData);
 		}
 	}
@@ -94,6 +105,26 @@ FieldLoader.prototype.load = function(isResultMode, callbackLoadedField) {
 	else {
 		loadCurrentState();
 	}
+};
+
+/**
+ * Load field data from the cache.
+ * Do nothing if an instance has no data. 
+ *
+ * @public
+ * @method
+ * @param  {function} callbackLoadedField - Callback called after loading field data
+ * @return {boolean} The value is true when loading from cache of an instance, else false
+ */
+FieldLoader.prototype.loadFromCache = function(callbackLoadedField) {
+	var hasLoadFromCache = false;
+	
+	if (typeof this.fieldDataCache === 'object') {
+		callbackLoadedField(this.fieldDataCache);
+		hasLoadFromCache = true;
+	}
+	
+	return hasLoadFromCache;
 };
 
 /**

@@ -75,6 +75,19 @@ FieldManager.prototype.loadField = function() {
 }
 
 /**
+ * Load field data from the cache data.
+ *
+ * @public
+ * @method
+ * @return {boolean} The value is true when loading from cache of an instance, else false
+ * @see FieldObject#loadFieldFromCache
+ * @see FieldLoader#loadFromCache
+ */
+FieldManager.prototype.loadFieldFromCache = function() {
+	return this.fieldObject.loadFieldFromCache();
+}
+
+/**
  * Callback called after loading a field data.
  *
  * @public
