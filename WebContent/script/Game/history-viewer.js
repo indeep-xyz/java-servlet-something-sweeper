@@ -287,5 +287,5 @@ HistoryViewer.prototype.updateView = function(cellDataArray) {
  * @method
  */
 HistoryViewer.prototype.resetView = function() {
-	this.fieldManager.resetView();
+	this.fieldManager.clearField();
 };

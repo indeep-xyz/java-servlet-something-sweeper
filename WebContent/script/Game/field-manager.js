@@ -118,10 +118,10 @@ FieldManager.prototype.callbackLoadedField = function(fieldData) {
  *
  * @public
  * @method
- * @see FieldObject#resetView
+ * @see FieldObject#clearField
  */
-FieldManager.prototype.resetView = function() {
-	this.fieldObject.resetView();
+FieldManager.prototype.clearField = function() {
+	this.fieldObject.clearField();
 };
 
 /**

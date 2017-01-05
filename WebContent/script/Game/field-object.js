@@ -224,7 +224,7 @@ FieldObject.prototype.openCell = function(cellIndex) {
  * @public
  * @method
  */
-FieldObject.prototype.resetView = function() {
+FieldObject.prototype.clearField = function() {
 	var tmpField = this.field.cloneNode(true);
 	var tmpCellArray = tmpField.querySelectorAll('.cell');
 	
