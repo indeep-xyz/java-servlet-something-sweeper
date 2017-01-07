@@ -3,36 +3,30 @@
  *
  * @class
  * @constructor
+ * @param {object} history - History data fetched from server
+ * @param {FieldManager} fieldManager - An instance of FieldManager
+ * @param {object} domArray - A hash array having IDs of controls for initialization 
  */
-var HistoryViewer = function(history, options){
+var HistoryViewer = function(history, fieldManager, domArray){
 	this.history = history;
-	this.fieldId = options.field;
-	this.fieldManager = options.fieldManager;
+	this.fieldManager = fieldManager;
 
-	this.initControls(options);
+	this.initControls(domArray);
 };
 
 /**
  * History data in a current game.
  *
  * @public
- * @var {Object}
+ * @type {Object}
  */
 HistoryViewer.prototype.history = {};
-
-/**
- * An ID of a HTML element as a game field.
- *
- * @public
- * @var {string}
- */
-HistoryViewer.prototype.fieldId = '';
 
 /**
  * Order number of the history property.
  *
  * @public
- * @var {Number}
+ * @type {Number}
  */
 HistoryViewer.prototype.orderNumber = undefined;
 
@@ -41,9 +35,9 @@ HistoryViewer.prototype.orderNumber = undefined;
  * 
  * @public
  * @method
- * @param {object} options - A hash array having IDs of controls for initialization 
+ * @param {object} domArray - A hash array having IDs of controls for initialization 
  */
-HistoryViewer.prototype.initControls = function(options) {
+HistoryViewer.prototype.initControls = function(domArray) {
 	// - - - - - - - - - - - - - - - -
 	// private variables - in HistoryViewer.prototype.initControls
 
@@ -51,7 +45,6 @@ HistoryViewer.prototype.initControls = function(options) {
 	 * An instance of HistoryView.
 	 *
 	 * @private
-	 * @var
 	 */
 	var self = this;
 	
@@ -167,10 +160,10 @@ HistoryViewer.prototype.initControls = function(options) {
 	// - - - - - - - - - - - - - - - -
 	// main - in HistoryViewer.prototype.initControls
 
-	initControlToSwitchMode(options.switchMode, options.operatorWrapper);
-	initControlToMoveNext(options.next);
-	initControlToMovePrevious(options.previous);
-	initControlToReset(options.reset);
+	initControlToSwitchMode(domArray.switchMode, domArray.operatorWrapper);
+	initControlToMoveNext(domArray.next);
+	initControlToMovePrevious(domArray.previous);
+	initControlToReset(domArray.reset);
 }
 
 /**
@@ -184,7 +177,7 @@ HistoryViewer.prototype.reset = function() {
 };
 
 /**
- * Extract the current history data.
+ * Extract data of the current history.
  * 
  * @public
  * @method
@@ -272,12 +265,7 @@ HistoryViewer.prototype.previous = function() {
  * @param {array} openedCellDataArray - Data of cells. 
  */
 HistoryViewer.prototype.updateView = function(cellDataArray) {
-	var fieldManager = new FieldManager(this.fieldId, null);
-
-//	console.info(this.orderNumber);
-//	console.info(cellDataArray);
-	
-	fieldManager.updateViewByCellDataArray(cellDataArray);
+	this.fieldManager.updateViewByCellDataArray(cellDataArray);
 };
 
 /**

@@ -4,9 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
   fieldManager.loadField();
   
   HistoryLoader.loadAll(function(historyData) {
-    var historyViewer = new HistoryViewer(historyData, {
-        'field': 'field',
-        'fieldManager': fieldManager,
+    var historyViewer = new HistoryViewer(historyData, fieldManager, {
         'switchMode': 'replay-mode',
         'operatorWrapper': 'replay-operator-wrapper',
         'reset': 'replay-reset-controller',
