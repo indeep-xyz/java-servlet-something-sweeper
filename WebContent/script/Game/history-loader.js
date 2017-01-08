@@ -1,5 +1,5 @@
 /**
- * Manage to load history data in game.
+ * This class manages to load history data in a current game from server.
  *
  * @class
  * @constructor
@@ -11,7 +11,7 @@ var HistoryLoader = function(){};
  *
  * @public
  * @static
- * @var {String}
+ * @type {String}
  */
 HistoryLoader.URL_HISTORY_DATA = 'HistoryData';
 
@@ -22,7 +22,7 @@ HistoryLoader.URL_HISTORY_DATA = 'HistoryData';
  * @public
  * @static
  * @method
- * @var {function} callbackSucceeded - Call back after loading history data.
+ * @param {function} callbackSucceeded - Call-back after loading history data.
  */
 HistoryLoader.loadAll = function(callbackSucceeded) {
   // console.info('[HistoryLoader.loadAll] IN');
@@ -34,7 +34,7 @@ HistoryLoader.loadAll = function(callbackSucceeded) {
 	 * An instance of HistoryLoader.
 	 *
 	 * @private
-	 * @var {HistoryLoader}
+	 * @type {HistoryLoader}
 	 */
 	var self = this;
 
@@ -46,6 +46,7 @@ HistoryLoader.loadAll = function(callbackSucceeded) {
 	 *
 	 * @private
 	 * @method
+	 * @fires callbackLoaded
 	 */
 	function load() {
 		var req = new XMLHttpRequest();
@@ -61,6 +62,7 @@ HistoryLoader.loadAll = function(callbackSucceeded) {
 	 *
 	 * @private
 	 * @method
+	 * @fires callbackLoaded
 	 */
 	function loadResult() {
 		var req = new XMLHttpRequest();
@@ -76,6 +78,7 @@ HistoryLoader.loadAll = function(callbackSucceeded) {
 	 *
 	 * @private
 	 * @method
+	 * @event
 	 * @this {EventHandler} A handler for onload event of XMLHttpRequest
 	 */
 	function callbackLoaded() {
