@@ -1,5 +1,5 @@
 /**
- * Manage the field data and view.
+ * Manage field data.
  *
  * @class
  * @constructor
@@ -12,30 +12,28 @@ var FieldManager = function(fieldId, isResultMode){
 };
 
 /**
- * An URL to view the result at failed in game.
+ * An URL to display the result of a failed game.
  *
  * @public
  * @static
- * @var {String}
+ * @type {String}
  */
 FieldManager.URL_GAME_FAILED = 'GameFailed';
 
 /**
- * An URL to view the result at succeeded in game.
+ * An URL to display the result of a succeeded game.
  *
  * @public
  * @static
- * @var {String}
+ * @type {String}
  */
 FieldManager.URL_GAME_SUCCEEDED = 'GameSucceeded';
 
 /**
- * Loading field data,
- * the data has all parameters when this value is true,
- * or the data is limited when this value is false.
+ * The mode of result or not.
  *
  * @public
- * @var {String}
+ * @type {String}
  */
 FieldManager.prototype.isResultMode = false;
 
@@ -43,10 +41,9 @@ FieldManager.prototype.isResultMode = false;
  * An object which wraps a HTML element as a field.
  *
  * @public
- * @var {FieldObject}
+ * @type {FieldObject}
  */
 FieldManager.prototype.fieldObject = undefined;
-
 
 /**
  * Update the field view with field data object.
@@ -62,12 +59,9 @@ FieldManager.prototype.updateViewByCellDataArray = function(cellDataArray) {
 
 /**
  * Load field data and it puts into the view.
- * If you pass an index of a cell,
- * open a cell at the index and then load.
  *
  * @public
  * @method
- * @param  {number} cellIndex - An index of a cell to open
  * @see FieldObject#loadField
  */
 FieldManager.prototype.loadField = function() {
@@ -79,7 +73,6 @@ FieldManager.prototype.loadField = function() {
  *
  * @public
  * @method
- * @return {boolean} The value is true when loading from cache of an instance, else false
  * @see FieldObject#loadFieldFromCache
  * @see FieldLoader#loadFromCache
  */
@@ -93,6 +86,7 @@ FieldManager.prototype.loadFieldFromCache = function() {
  * @public
  * @method
  * @param  {object} fieldData - The source of a HTML element as a field
+ * @return {boolean} Return true when the current game ends in the passed field data, else false
  */
 FieldManager.prototype.callbackLoadedField = function(fieldData) {
 	var isGameEnd = false;
@@ -114,7 +108,7 @@ FieldManager.prototype.callbackLoadedField = function(fieldData) {
 
 
 /**
- * Update the field clear.
+ * Clear the field view.
  *
  * @public
  * @method
@@ -125,7 +119,7 @@ FieldManager.prototype.clearField = function() {
 };
 
 /**
- * Update a field with data for it.
+ * Update the field view with field data object.
  *
  * @public
  * @method
