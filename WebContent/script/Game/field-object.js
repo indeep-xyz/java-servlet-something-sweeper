@@ -16,17 +16,34 @@ var FieldObject = function(fieldManager, fieldId){
  * A HTML element as a field.
  *
  * @public
- * @var {HTMLElement}
+ * @type {HTMLElement}
  */
 FieldObject.prototype.field = null;
 
 /**
- * 
+ * An object which loads field data from server.
  *
  * @public
- * @var {FieldLoader}
+ * @type {FieldLoader}
  */
 FieldObject.prototype.fieldLoader = undefined;
+
+/**
+ * Get an ID attribute of a HTML element as a field.
+ *
+ * @public
+ * @method
+ * @return  {string} Return an ID attribute of a HTML element of a field when an instance has the element, else return a blank string
+ */
+FieldObject.prototype.getFieldId = function() {
+	var id = "";
+	
+	if (this.field !== null) {
+		id = this.field.getAttribute('id');
+	}
+
+	return id;
+}
 
 /**
  * Set a HTML element as a field.
@@ -37,7 +54,7 @@ FieldObject.prototype.fieldLoader = undefined;
  */
 FieldObject.prototype.setField = function(field) {
 	if (this.field !== null) {
-		var oldField = document.getElementById(this.field.getAttribute('id'));
+		var oldField = document.getElementById(this.getFieldId());
 		oldField.parentNode.replaceChild(field, oldField);
 	}
 
@@ -71,7 +88,7 @@ FieldObject.prototype.updateField = function(fieldData) {
 	 * Load field data from a server.
 	 *
 	 * @private
-	 * @method
+	 * @type {FieldObject}
 	 */
 	var self = this;
 
@@ -219,7 +236,7 @@ FieldObject.prototype.openCell = function(cellIndex) {
 }
 
 /**
- * Update the field clear.
+ * Clear the field view.
  *
  * @public
  * @method
