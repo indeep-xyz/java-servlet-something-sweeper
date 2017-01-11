@@ -1,5 +1,5 @@
 /**
- * Manage to load the field data from server.
+ * This class manages to load the field data from server.
  *
  * @class
  * @constructor
@@ -12,7 +12,7 @@ var FieldLoader = function(){
  *
  * @public
  * @static
- * @var {String}
+ * @type {String}
  */
 FieldLoader.URL_FIELD_DATA = 'FieldData';
 
@@ -21,7 +21,7 @@ FieldLoader.URL_FIELD_DATA = 'FieldData';
  * This is updated automatically at loading field data.
  * 
  * @public
- * @var {object}
+ * @type {object}
  */
 FieldLoader.prototype.fieldDataCache = undefined;
 
@@ -32,7 +32,7 @@ FieldLoader.prototype.fieldDataCache = undefined;
  * @public
  * @method
  * @param {boolean} isResultMode - Get field data all when this is true
- * @param  {function} callbackLoadedField - Callback called after loading field data
+ * @param  {function} callbackLoadedField - Call-back called after loading field data
  */
 FieldLoader.prototype.load = function(isResultMode, callbackLoadedField) {
 	// - - - - - - - - - - - - - - - -
@@ -42,7 +42,7 @@ FieldLoader.prototype.load = function(isResultMode, callbackLoadedField) {
 	 * An instance of FieldLoader.
 	 *
 	 * @private
-	 * @var {FieldLoader}
+	 * @type {FieldLoader}
 	 */
 	var self = this;
 
@@ -144,7 +144,7 @@ FieldLoader.prototype.openCell = function(cellIndex, callbackLoadedField) {
 	 * An instance of FieldLoader.
 	 *
 	 * @private
-	 * @var {FieldLoader}
+	 * @type {FieldLoader}
 	 */
 	var self = this;
 
@@ -156,7 +156,7 @@ FieldLoader.prototype.openCell = function(cellIndex, callbackLoadedField) {
 	 *
 	 * @private
 	 * @method
-	 * @var {number} index - An index of a cell
+	 * @param {number} index - An index of a cell
 	 */
 	function open(index) {
 		var req = new XMLHttpRequest();
