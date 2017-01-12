@@ -19,7 +19,7 @@ var CellObject = function(fieldObject, source, doesAttachEvent){
  * An instance to manage field.
  *
  * @public
- * @var {FieldManager}
+ * @type {FieldManager}
  */
 CellObject.prototype.fieldObject = undefined;
 
@@ -27,7 +27,7 @@ CellObject.prototype.fieldObject = undefined;
  * Parameters to create a cell.
  *
  * @public
- * @var {object}
+ * @type {object}
  */
 CellObject.prototype.source = undefined;
 
@@ -35,7 +35,7 @@ CellObject.prototype.source = undefined;
  * An ID of the cell.
  *
  * @public
- * @var {number}
+ * @type {number}
  */
 CellObject.prototype.index = undefined;
 
@@ -43,7 +43,7 @@ CellObject.prototype.index = undefined;
  * A status that the cell is open or not.
  *
  * @public
- * @var {boolean}
+ * @type {boolean}
  */
 CellObject.prototype.isOpen = undefined;
 
@@ -51,7 +51,7 @@ CellObject.prototype.isOpen = undefined;
  * A DOM object as a cell.
  *
  * @public
- * @var {HTMLElement}
+ * @type {HTMLElement}
  */
 CellObject.prototype.domObject = undefined;
 
@@ -68,10 +68,10 @@ CellObject.prototype.initDomObject = function(source, doesAttachEvent) {
 	// private variables - in CellObject.prototype.initDomObject
 
 	/**
-	 * An instance of FieldManager.
+	 * An instance of CellObject.
 	 *
 	 * @private
-	 * @var {FieldManager}
+	 * @type {CellObject}
 	 */
 	var self = this;
 
@@ -79,7 +79,7 @@ CellObject.prototype.initDomObject = function(source, doesAttachEvent) {
 	// private functions - in CellObject.prototype.initDomObject
 
 	/**
-	 * Create a cell initialized common settings.
+	 * Create a HTML element as a cell and initialize it.
 	 *
 	 * @private
 	 * @method
@@ -97,7 +97,7 @@ CellObject.prototype.initDomObject = function(source, doesAttachEvent) {
 	 *
 	 * @private
 	 * @method
-	 * @param  {number} aroundSomething - The number of something cells around a cell
+	 * @param  {number} aroundSomething - Number of something cells around a cell
 	 * @return {HTMLElement} A plain cell
 	 */
 	function createPlainCell(aroundSomething) {
